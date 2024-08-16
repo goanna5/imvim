@@ -5,7 +5,7 @@ class ImvimModel():
         self.player_text = []
         self.cursor_coords = (0,0)
         self.level = 0
-        self.goal_text = []
+        self.goal_text = GOAL_ZERO
         self.historical_keypress = []
     
     def get_cursor_coords(self):
@@ -48,15 +48,15 @@ class ImvimModel():
         return self.player_text == self.goal_text
     
     def get_last_correct_char(self):
-        for i, row in enumerate(self.player_text):
-            if i >= len(self.goal_text):
+        for i, row in enumerate(self.goal_text):
+            if i >= len(self.player_text):
                 return (i, 0)
-            if row == self.goal_text[i]:
+            if row == self.player_text[i]:
                 continue
             else:
                 # last correct char is on this row
                 for j, char in enumerate(row):
-                    if char != self.goal_text[i][j]:
+                    if char != self.player_text[i][j]:
                         return (i, j)
         return None
     

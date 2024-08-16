@@ -10,9 +10,14 @@ class ImvimController:
         self._imvimModel = ImvimModel()
         self._imvimView = ImvimView()
 
+        self._imvimView.create_view(master)
+        # TEST TEST TEST
+        self._imvimView.test_redraw()
+
         # handle key presses 
         master.bind('<KeyPress>', self.handle_keypress)
         ### redraw gui ### <- maybe a view method, may need to make one in controller
+        self._imvimView.display_view(master)
 
     def handle_keypress(self, event: tk.Event) -> None:
         # method to handle all the different functionality from pressing keys
@@ -20,7 +25,7 @@ class ImvimController:
         key_pressed = event.char.lower()
 
         # pass keys pressed to the thing displaying on the gui
-        self._imvimView.display_keypress()
+        #self._imvimView.display_keypress()
 
 
         # so far:
@@ -43,6 +48,13 @@ class ImvimController:
         # decide others later
 
         ### redraw gui ### <- maybe a view method, may need to make one in controller
+        self._imvimView.redraw(self._imvimModel)
 
     # updates game state/ position of the cursor although this is done indirectly through modfiying methods
     
+def main():
+    root = tk.Tk()
+    ImvimController(root)
+
+if __name__ == "__main__":
+    main()

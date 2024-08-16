@@ -15,11 +15,11 @@ class TextGrid(tk.Canvas):
 
         self.name = name
 
-        self.text_color = "white"
+        self.text_colour = "white"
+        self.bg_colour = "#333333"
         self.split_point = None
 
         # TEST
-        self.print_line_nums()
         #self.print_text(["Hello,", "World!"])
 
     def get_pixel_coords(self, row: int, col: int):
@@ -52,24 +52,26 @@ class TextGrid(tk.Canvas):
 
     def print_char(self, char: str, x: int, y: int, color: str) -> None:
         if self.split_point == (x-TEXT_OFFSET, y-1):
-            self.text_color = "white"
+            self.text_colour = "white"
             color = "white"
         midpoint = self.get_pixel_coords(y, x)
         self.create_text(midpoint, text=char, anchor=CENTER, fill=color, font="Consolas")
 
     def print_line(self, line: str, row_num: int) -> None:
         for i, char in enumerate(line):
-            self.print_char(char, i+TEXT_OFFSET, row_num, self.text_color)
+            self.print_char(char, i+TEXT_OFFSET, row_num, self.text_colour)
 
     def print_text(self, text) -> None:
         for i, line in enumerate(text):
             self.print_line(line, i+1)
 
     def redraw(self, text, level, cursor_pos=None, split_point=None) -> None:
+        self.create_rectangle(0, 0, self.width, self.height, fill=self.bg_colour)
+        self.print_line_nums()
         self.split_point = split_point
-        self.text_color = "white"
+        self.text_colour = "white"
         self.draw_heading(level)
-        self.text_color = "lime"
+        self.text_colour = "lime"
         self.print_text(text)
         if cursor_pos:
             # draw cursor
@@ -111,8 +113,7 @@ class ImvimView:
     def display_view(self, root):
         root.mainloop()
 
-    def create_view(self):
-        root = tk.Tk()
+    def create_view(self, root):
         root.attributes('-fullscreen', True)
         root.title("Imvim")
 
@@ -136,8 +137,6 @@ class ImvimView:
         self.userTextFrame.pack(side=LEFT, fill=BOTH)
         self.taskFrame.pack(side=RIGHT, fill=BOTH)
         self.keyPressFrame.pack(side=BOTTOM, fill=BOTH)
-
-        return root
     
     def redraw(self, model):
         # model is a ImvimModel
@@ -163,7 +162,7 @@ class ImvimView:
         self.keyPressFrame.redraw(["E", "D", "C", "B", "A", "SPACE", "H", "BACK", "SHIFT", "SPACE"])
 
 
-def main():
+'''def main():
     view = ImvimView()
     root = view.create_view()
     # TEST TEST TEST
@@ -171,4 +170,4 @@ def main():
     view.display_view(root)
 
 if __name__ == "__main__":
-    main()
+    main()'''
