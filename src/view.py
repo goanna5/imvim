@@ -4,7 +4,7 @@ from tkinter import *
 from constants import KEY_PRESS_FRAME_HEIGHT, TEXT_OFFSET
 
 class TextGrid(tk.Canvas):
-    def __init__(self, master, width, height, text_color, **kwargs):
+    def __init__(self, master, width, height, **kwargs):
         super().__init__(master, width=width, height=height, **kwargs)
         self.row_size = 60
         self.col_size = 25
@@ -13,7 +13,7 @@ class TextGrid(tk.Canvas):
         self.cell_width = self.width // self.row_size
         self.cell_height = self.height // self.col_size
 
-        self.text_color = text_color
+        self.text_color = "lime"
         self.split_point = None
 
         # TEST
@@ -72,6 +72,38 @@ class TaskTextFrame(TextGrid):
     def __init__(self, master, width, height, **kwargs):
         super().__init__(master, width, height, "lime", **kwargs)"""
 
+class KeyPressFrame(tk.Canvas):
+    def __init__(self, master, width, height, **kwargs):
+        super().__init__(master, width=width, height=height, **kwargs)
+        self.width = width
+        self.height = height
+        self.capacity = 10
+    
+    def redraw(self, keys) -> None:
+        # keys should be a list of strings
+        square_height = 75
+        for i in range(self.capacity):
+            if i >= len(keys):
+                return
+            this_key = keys[i]
+            cell_width = self.width // self.capacity
+            center_x = self.width - i*cell_width - cell_width//2
+            center_y = self.height // 2
+
+            y1 = center_y - square_height//2
+            y2 = y1 + square_height
+            if len(this_key) == 1:
+                # single char -> square box
+                x1 = center_x - square_height//2
+                x2 = x1 + square_height
+                self.create_rectangle(x1, y1, x2, y2, fill="white")
+            else:
+                # multiple chars -> rectangle box
+                x1 = center_x - (4*square_height)//5
+                x2 = x1 + (8*square_height)//5
+                self.create_rectangle(x1, y1, x2, y2, fill="white")
+            self.create_text((center_x, center_y), text=this_key, anchor=CENTER, font="Arial")
+
 class ImvimView:
     def display_view(self, root):
         root.mainloop()
@@ -88,11 +120,11 @@ class ImvimView:
                                width=self.width)
         self.userTextFrame = TextGrid(self.gameFrame, self.width // 2,
                                       self.height-KEY_PRESS_FRAME_HEIGHT,
-                                      "white", background='#333333')
+                                      background='#333333')
         self.taskFrame = TextGrid(self.gameFrame, self.width // 2,
-                                  self.height-KEY_PRESS_FRAME_HEIGHT, "lime",
+                                  self.height-KEY_PRESS_FRAME_HEIGHT,
                                   background='#333333')
-        self.keyPressFrame = Frame(root, background='#333333',
+        self.keyPressFrame = KeyPressFrame(root, background='#555555',
                                    height=KEY_PRESS_FRAME_HEIGHT,
                                    width=self.width)
         
@@ -107,22 +139,24 @@ class ImvimView:
     def redraw(self, model):
         # model is a ImvimModel
         cursor_pos = model.get_cursor_coords()
-        user_text = model.get_player_text()
-        self.userTextFrame.redraw(user_text, cursor_pos=cursor_pos)
-
         split_point = model.get_last_correct_char()
+        user_text = model.get_player_text()
+        self.userTextFrame.redraw(user_text, cursor_pos=cursor_pos, split_point=split_point)
+
         goal_text = model.get_goal_text()
         self.taskFrame.redraw(goal_text, split_point=split_point)
 
     def test_redraw(self):
         # DELETE THIS WHOLE METHOD - FOR TESTING PURPOSES ONLY
-        cursor_pos = (7, 1)
-        user_text = ["This is the user's text", "that the user has typed."]
-        self.userTextFrame.redraw(user_text, cursor_pos=cursor_pos)
+        cursor_pos = (20, 1)
+        split_point = (10,1)
+        user_text = ["This is an example of", "what the game could look like."]
+        self.userTextFrame.redraw(user_text, cursor_pos=cursor_pos, split_point=split_point)
 
-        split_point = (12,1)
-        goal_text = ["Here is some sample text", "whichisrandomandweird."]
+        goal_text = ["This is an example of", "what the goal output could be."]
         self.taskFrame.redraw(goal_text, split_point=split_point)
+
+        self.keyPressFrame.redraw(["E", "D", "C", "B", "A", "SPACE", "H", "BACK", "SHIFT", "SPACE"])
 
 
 def main():
