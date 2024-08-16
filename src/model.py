@@ -6,6 +6,7 @@ class ImvimModel():
         self.cursor_coords = (0,0)
         self.level = 0
         self.goal_text = []
+        self.historical_keypress = []
     
     def get_cursor_coords(self):
         # (row_num, col_num)
@@ -66,3 +67,12 @@ class ImvimModel():
         self.cursor_coords = (0,0)
         self.level += 1
         self.goal_text = GOAL_TEXTS[self.level]
+
+    def set_historical_keypress(self, keypressed):
+        if len(self.historical_keypress) > 10:
+            self.historical_keypress = self.historical_keypress[1:]
+        self.historical_keypress.append(keypressed)
+    
+    def get_historical_keypress(self):
+        return self.historical_keypress
+
