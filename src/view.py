@@ -2,7 +2,7 @@
 import tkinter as tk
 from tkinter import *
 
-class InvimView:
+class ImvimView:
     def display_view(self, root):
         root.mainloop()
 
@@ -31,7 +31,7 @@ class InvimView:
 
 
 def main():
-    view = InvimView()
+    view = ImvimView()
     root = view.create_view()
     view.display_view(root)
 
