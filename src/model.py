@@ -1,3 +1,5 @@
+from constants import *
+
 class ImvimModel():
     def __init__(self) -> None:
         self.player_text = []
@@ -6,11 +8,12 @@ class ImvimModel():
         self.goal_text = []
     
     def get_cursor_coords(self):
+        # (row_num, col_num)
+        # i.e. (y, x) with (0,0) being the top left corner
         return self.cursor_coords
 
     def get_player_text(self):
-        ''' Returns a list of strings where each string is a line of text
-        '''
+        # Returns a list of strings where each string is a line of text
         return self.player_text
     
     def get_level(self):
@@ -39,3 +42,27 @@ class ImvimModel():
 
     def is_level_beaten(self):
         return self.player_text == self.goal_text
+    
+    def get_last_correct_char(self):
+        for i, row in enumerate(self.player_text):
+            if i >= len(self.goal_text):
+                return (i, 0)
+            if row == self.goal_text[i]:
+                continue
+            else:
+                # last correct char is on this row
+                for j, char in enumerate(row):
+                    if char != self.goal_text[i][j]:
+                        return (i, j)
+        return None
+    
+    def start_next_level(self) -> None:
+        # when level complete, call this method
+        if self.level == MAX_LEVEL:
+            # if we are on the final level, do nothing
+            return
+        # reset all data stuff
+        self.player_text = []
+        self.cursor_coords = (0,0)
+        self.level += 1
+        self.goal_text = GOAL_TEXTS[self.level]
