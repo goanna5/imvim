@@ -11,6 +11,7 @@ START_ZERO = ["Here is some text.",
 START_TEXTS = [START_ZERO]
 
 KEY_PRESS_FRAME_HEIGHT = 150
+TEXT_OFFSET = 4
 
 # Constants related to moving the player
 UP = 'u'

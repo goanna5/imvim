@@ -1,10 +1,10 @@
 # view
 import tkinter as tk
 from tkinter import *
-from constants import KEY_PRESS_FRAME_HEIGHT
+from constants import KEY_PRESS_FRAME_HEIGHT, TEXT_OFFSET
 
 class TextGrid(tk.Canvas):
-    def __init__(self, master, width, height, **kwargs):
+    def __init__(self, master, width, height, text_color, **kwargs):
         super().__init__(master, width=width, height=height, **kwargs)
         self.row_size = 60
         self.col_size = 25
@@ -13,10 +13,12 @@ class TextGrid(tk.Canvas):
         self.cell_width = self.width // self.row_size
         self.cell_height = self.height // self.col_size
 
+        self.text_color = text_color
+        self.split_point = None
+
         # TEST
         self.print_line_nums()
-        self.print_line("Hello,", 1)
-        self.print_line("World!", 2)
+        #self.print_text(["Hello,", "World!"])
 
     def get_pixel_coords(self, row: int, col: int):
         x = self.cell_width * col + self.cell_width // 2
@@ -31,15 +33,44 @@ class TextGrid(tk.Canvas):
                 self.print_char(str(left_digit), 1, i, color="gray")
             self.print_char(str(right_digit), 2, i, color="gray")
 
+    def draw_cursor(self, cursor_pos) -> None:
+        # Note: The cursor does not blink because that would require a timer
+        cursor_x, cursor_y = cursor_pos
+        x = cursor_x*self.cell_width
+        y = cursor_y*self.cell_height
+        self.create_line(x,y,x,y+self.cell_height, fill="white", width=3)
 
-    def print_char(self, char: str, x: int, y: int, color="white") -> None:
+
+    def print_char(self, char: str, x: int, y: int, color: str) -> None:
+        if self.split_point == (x-TEXT_OFFSET, y):
+            self.text_color = "white"
+            color = "white"
         midpoint = self.get_pixel_coords(y, x)
         self.create_text(midpoint, text=char, anchor=CENTER, fill=color, font="Consolas")
 
     def print_line(self, line: str, row_num: int) -> None:
         for i, char in enumerate(line):
-            self.print_char(char, i+4, row_num)
+            self.print_char(char, i+TEXT_OFFSET, row_num, self.text_color)
 
+    def print_text(self, text) -> None:
+        for i, line in enumerate(text):
+            self.print_line(line, i)
+
+    def redraw(self, text, cursor_pos=None, split_point=None) -> None:
+        self.split_point = split_point
+        self.print_text(text)
+        if cursor_pos:
+            # draw cursor
+            self.draw_cursor(cursor_pos)
+
+
+"""class UserTextFrame(TextGrid):
+    def __init__(self, master, width, height, **kwargs):
+        super().__init__(master, width, height, "white", **kwargs)
+
+class TaskTextFrame(TextGrid):
+    def __init__(self, master, width, height, **kwargs):
+        super().__init__(master, width, height, "lime", **kwargs)"""
 
 class ImvimView:
     def display_view(self, root):
@@ -53,42 +84,53 @@ class ImvimView:
         self.height = root.winfo_screenheight()
         self.width = root.winfo_screenwidth()
 
-        gameFrame = Frame(root, height=self.height-KEY_PRESS_FRAME_HEIGHT, width=self.width)
-        userTextFrame = TextGrid(gameFrame, self.width // 2, self.height-KEY_PRESS_FRAME_HEIGHT, background='#333333')
-        taskFrame = TextGrid(gameFrame, self.width // 2, self.height-KEY_PRESS_FRAME_HEIGHT, background='#333333')
-        keyPressFrame = Frame(root, background='#333333', height=KEY_PRESS_FRAME_HEIGHT, width=self.width)
+        self.gameFrame = Frame(root, height=self.height-KEY_PRESS_FRAME_HEIGHT,
+                               width=self.width)
+        self.userTextFrame = TextGrid(self.gameFrame, self.width // 2,
+                                      self.height-KEY_PRESS_FRAME_HEIGHT,
+                                      "white", background='#333333')
+        self.taskFrame = TextGrid(self.gameFrame, self.width // 2,
+                                  self.height-KEY_PRESS_FRAME_HEIGHT, "lime",
+                                  background='#333333')
+        self.keyPressFrame = Frame(root, background='#333333',
+                                   height=KEY_PRESS_FRAME_HEIGHT,
+                                   width=self.width)
         
-        '''
-        userTextFrame.grid(row=0, column=0, padx=5, pady=5)
-        taskFrame.grid(row=0, column=1, padx=5, pady=5)
-        keyPressFrame.grid(row=1, column=0, padx=5, pady=5)
-        '''
 
-        gameFrame.pack(side=TOP, fill=BOTH)
-        userTextFrame.pack(side=LEFT, fill=BOTH)
-        taskFrame.pack(side=RIGHT, fill=BOTH)
-        keyPressFrame.pack(side=BOTTOM, fill=BOTH)
+        self.gameFrame.pack(side=TOP, fill=BOTH)
+        self.userTextFrame.pack(side=LEFT, fill=BOTH)
+        self.taskFrame.pack(side=RIGHT, fill=BOTH)
+        self.keyPressFrame.pack(side=BOTTOM, fill=BOTH)
 
         return root
     
     def redraw(self, model):
         # model is a ImvimModel
-        pass
+        cursor_pos = model.get_cursor_coords()
+        user_text = model.get_player_text()
+        self.userTextFrame.redraw(user_text, cursor_pos=cursor_pos)
 
+        split_point = model.get_last_correct_char()
+        goal_text = model.get_goal_text()
+        self.taskFrame.redraw(goal_text, split_point=split_point)
 
-    def update_cursor(self):
-        pass
+    def test_redraw(self):
+        # DELETE THIS WHOLE METHOD - FOR TESTING PURPOSES ONLY
+        cursor_pos = (7, 1)
+        user_text = ["This is the user's text", "that the user has typed."]
+        self.userTextFrame.redraw(user_text, cursor_pos=cursor_pos)
 
-    def update_view(self):
-        pass
+        split_point = (12,1)
+        goal_text = ["Here is some sample text", "whichisrandomandweird."]
+        self.taskFrame.redraw(goal_text, split_point=split_point)
 
 
 def main():
     view = ImvimView()
     root = view.create_view()
+    # TEST TEST TEST
+    view.test_redraw()
     view.display_view(root)
 
 if __name__ == "__main__":
     main()
-
-
