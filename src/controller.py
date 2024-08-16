@@ -3,6 +3,7 @@ import tkinter as tk
 from model import *
 from view import *
 from constants import *
+from features import *
 
 class ImvimController:
     def __init__(self, master: tk.Tk) -> None:
@@ -22,17 +23,13 @@ class ImvimController:
     def handle_keypress(self, event: tk.Event) -> None:
         # method to handle all the different functionality from pressing keys
         # references methods in the view
-        key_pressed = event.char.lower()
+        key_pressed = event.keysym
+        print(key_pressed)
+
+        handle_back_and_del(key_pressed, ImvimModel)
 
         # pass keys pressed to the thing displaying on the gui
         #self._imvimView.display_keypress()
-
-
-        # so far:
-        if key_pressed in [UP, DOWN, LEFT, RIGHT]:
-            self._imvimModel.move_cursor(key_pressed[0], key_pressed[1])
-
-        # decide others later
 
         ### redraw gui ### <- maybe a view method, may need to make one in controller
         self._imvimView.redraw(self._imvimModel)

@@ -25,3 +25,10 @@ MOVE_DELTAS = {
     RIGHT: (0, 7),
     UP: (-5, 0),
 }
+
+ARROW_TO_CHAR = {
+    "Up": UP,
+    "Down": DOWN,
+    "Left": LEFT,
+    "Right": RIGHT,
+}
