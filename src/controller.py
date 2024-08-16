@@ -29,21 +29,8 @@ class ImvimController:
 
 
         # so far:
-        if key_pressed == UP:
-            # move up
-            self._imvimModel.move_cursor(UP[0], UP[1])
-
-        elif key_pressed == DOWN:
-            # move down
-            self._imvimModel.move_cursor(DOWN[0], DOWN[1])
-
-        elif key_pressed == LEFT:
-            # move left
-            self._imvimModel.move_cursor(LEFT[0], LEFT[1])
-
-        elif key_pressed == RIGHT:
-            # move right
-            self._imvimModel.move_cursor(RIGHT[0], RIGHT[1])
+        if key_pressed in [UP, DOWN, LEFT, RIGHT]:
+            self._imvimModel.move_cursor(key_pressed[0], key_pressed[1])
 
         # decide others later
 
