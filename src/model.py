@@ -32,6 +32,8 @@ class ImvimModel():
     def insert_char_at_cursor(self, char: str) -> None:
         col, row = self.cursor_coords
         self.player_text[row] = self.player_text[row][:col] + char + self.player_text[row][col:]
+        self.move_cursor(0, len(char))
+
 
     def move_cursor(self, row_delta: int, col_delta: int) -> None:
         c, r = self.cursor_coords
