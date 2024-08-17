@@ -93,6 +93,16 @@ def handle_special(key_pressed, model):
     """
     pass
 
+def handle_numbers(key_pressed, model):
+    """
+    If input is 0 or 1, update the number
+    """
+    if key_pressed in SYMBOLS_TO_NUMBERS:
+        model.add_number(SYMBOLS_TO_NUMBERS[key_pressed])
+        return True
+    return False
+
+
 def convert_space(key_pressed, model):
     """
     HARD
