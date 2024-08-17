@@ -68,8 +68,8 @@ def convert_space(key_pressed, model):
     this shouldnt immediately turn back into a " ")
     """
     if key_pressed in REGULAR_CHAR_TO_CHAR and REGULAR_CHAR_TO_CHAR[key_pressed] == 'e':
-        print("yo")
         if model.check_space():
+            model.delete_space()
             model.insert_char_at_cursor(" ")
             return True
     return False

@@ -62,6 +62,7 @@ EQUAL_TO_SYM = "=="
 LOGICAL_AND_SYM = "&&"
 LOGICAL_OR_SYM = "||"
 TAB_SYM = "\t"
+SPACE_SYM = " "
 
 # Constants related to symbols (text representation)
 GRAVE = "grave"
@@ -105,7 +106,7 @@ FORCE_QUIT = "exit"
 
 PRINTABLE = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "\\n",
 GRAVE_SYM, NOT_SYM, EXCLAMATION_SYM, AT_SYM, HASH_SYM, DOLLAR_SYM, PERCENT_SYM, CARET_SYM, AMPERSAND_SYM, ASTERISK_SYM, OPEN_PARENTHESIS_SYM, CLOSE_PARENTHESIS_SYM, MINUS_SYM, UNDERSCORE_SYM, PLUS_SYM, EQUALS_SYM, OPEN_BRACKET_SYM, OPEN_BRACE_SYM, CLOSE_BRACKET_SYM, CLOSE_BRACE_SYM, BAR_SYM, BACKSLASH_SYM, COLON_SYM, SEMICOLON_SYM, DOUBLE_QUOTES_SYM, SINGLE_QUOTE_SYM, COMMA_SYM, LESS_THAN_SYM,
-FULL_STOP_SYM, GREATER_THAN_SYM, SLASH_SYM, QUESTION_MARK_SYM, POWER_SYM, EQUAL_TO_SYM, LOGICAL_AND_SYM, LOGICAL_OR_SYM, TAB_SYM]
+FULL_STOP_SYM, GREATER_THAN_SYM, SLASH_SYM, QUESTION_MARK_SYM, POWER_SYM, EQUAL_TO_SYM, LOGICAL_AND_SYM, LOGICAL_OR_SYM, TAB_SYM, SPACE_SYM]
 
 # Mapping of directions to coordinates
 MOVE_DELTAS = {

@@ -57,6 +57,7 @@ class ImvimModel():
         new_c = min(max(c + col_delta, 0), max_c)
         self.cursor_coords = (new_c, new_r)
     
+    # deletes contents of the current row (row array is still in the overall array)
     def delete_current_row(self):
         if self.player_text != []:
             row = self.player_text[self.cursor_coords[1]]
@@ -118,3 +119,21 @@ class ImvimModel():
     # Returns true if the char is printable, false if not
     def is_printable(self, char: str) -> bool:
         return (char in PRINTABLE)
+    
+    #checks if the previous historical keypresses are 'c', 'a', 'p', 's'
+    def check_space(self) -> bool:
+        if len(self.historical_keypress) >= 5:
+            if (REGULAR_CHAR_TO_CHAR[self.historical_keypress[-1]] == 'c' 
+                and REGULAR_CHAR_TO_CHAR[self.historical_keypress[-2]] == 'a' 
+                and REGULAR_CHAR_TO_CHAR[self.historical_keypress[-3]] == 'p' 
+                and REGULAR_CHAR_TO_CHAR[self.historical_keypress[-4]] == 's'):
+                return True 
+        return False
+    
+    #remove the spac from the terminal
+    def delete_space(self) -> None:
+        row = self.player_text[self.cursor_coords[1]]
+        for i in range(4):
+            row.pop()
+        self.move_cursor(0, 4)
+        
