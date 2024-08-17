@@ -63,6 +63,12 @@ EQUAL_TO = "=="
 LOGICAL_AND = "&&"
 LOGICAL_OR = "||"
 
+# Constants relating to special functionality
+RIGHT_TO_LEFT_OVERRIDE = "U+202E" #this is the unicode character
+CHANGE_TAB_WIDTH = "tab width"
+CLEAR_FILE = "clear"
+FORCE_QUIT = "exit"
+
 MOVE_DELTAS = {
     UP: (-2, 0),
     DOWN: (3, 0),
@@ -133,4 +139,60 @@ SYMBOLS_TO_SYM = {
     GREATER_THAN: LOGICAL_AND,
     SLASH: TAB,
     QUESTION_MARK: LOGICAL_OR
+}
+
+# Mapping of the characters
+CHAR_TO = {
+    "q": "q",
+    "Q": "A",
+    "w": "w",
+    "W": "B",
+    "e": "t",
+    "E": "C",
+    RIGHT: "Right",
+    "R": "E",
+    "t": "p",
+    "T": RIGHT_TO_LEFT_OVERRIDE,
+    "y": "n",
+    "Y": CHANGE_TAB_WIDTH,
+    UP: "Up",
+    "U": CLEAR_FILE,
+    "i": "i",
+    "I": "I",
+    "o": "y",
+    "O": FORCE_QUIT,
+    "p": "o",
+    "P": "K",
+    "a": "a",
+    "A": "M",
+    "s": "s",
+    "S": "N",
+    DOWN: "Down",
+    "D": "O",
+    "f": OPEN_PARENTHESIS,
+    "F": OPEN_BRACKET,
+    "g": DOUBLE_QUOTES,
+    "G": SINGLE_QUOTE,
+    "h": FULL_STOP,
+    "H": SEMICOLON,
+    "j": CLOSE_PARENTHESIS,
+    "J": CLOSE_BRACKET,
+    "k": "e",
+    "K": "P",
+    LEFT: "Left",
+    "L": "Q",
+    "z": "z",
+    "Z": "S",
+    "x": "x",
+    "X": "T",
+    "c": "c",
+    "C": "V",
+    "v": "v",
+    "V": "W",
+    "b": "b",
+    "B": "X",
+    "n": "k",
+    "N": "Y",
+    "m": "m",
+    "M": "Z"
 }
