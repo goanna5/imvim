@@ -13,7 +13,7 @@ class ImvimController:
 
         self._imvimView.create_view(master)
         # TEST TEST TEST
-        self._imvimView.test_redraw()
+        self._imvimView.initial_redraw()
 
         # handle key presses 
         master.bind('<KeyPress>', self.handle_keypress)
@@ -39,6 +39,8 @@ class ImvimController:
 
         # pass keys pressed to the thing displaying on the gui
         #self._imvimView.display_keypress()
+        self._imvimModel.set_historical_keypress(key_pressed)
+        print(self._imvimModel.get_historical_keypress())
 
         
 

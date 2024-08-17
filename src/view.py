@@ -115,8 +115,12 @@ class KeyPressFrame(tk.Canvas):
         self.height = height
         self.capacity = 10
     
+    def clear(self) -> None:
+        self.delete('all')
+    
     def redraw(self, keys) -> None:
         # keys should be a list of strings
+        self.clear()
         square_height = 75
         for i in range(self.capacity):
             if i >= len(keys):
@@ -139,6 +143,10 @@ class KeyPressFrame(tk.Canvas):
                 x2 = x1 + (8*square_height)//5
                 self.create_rectangle(x1, y1, x2, y2, fill="white")
             self.create_text((center_x, center_y), text=this_key, anchor=CENTER, font="Arial")
+
+    def init_redraw(self) -> None:
+        self.create_text(self.width//2, self.height//2, text="Your keypress history will go here", anchor=CENTER, font=("Arial", 16), fill="white")
+
 
 class ImvimView:
     def display_view(self, root, model):
@@ -181,9 +189,10 @@ class ImvimView:
 
         goal_text = model.get_goal_text()
         self.taskFrame.redraw(goal_text, split_point=split_point)
+        self.keyPressFrame.redraw(model.get_historical_keypress())
 
-    def test_redraw(self):
-        # DELETE THIS WHOLE METHOD - FOR TESTING PURPOSES ONLY
+    def initial_redraw(self):
+        # redraws initially
         cursor_pos = (20, 1)
         split_point = (10,1)
         user_text = ["This is an example of", "what the game could look like."]
@@ -192,7 +201,7 @@ class ImvimView:
         goal_text = ["This is an example of", "what the goal output could be."]
         self.taskFrame.redraw(goal_text, split_point=split_point)
 
-        self.keyPressFrame.redraw(["E", "D", "C", "B", "A", "SPACE", "H", "BACK", "SHIFT", "SPACE"])
+        self.keyPressFrame.init_redraw()
 
 
 '''def main():
