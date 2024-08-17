@@ -20,10 +20,10 @@ LEFT = 'l'
 RIGHT = 'r'
 
 MOVE_DELTAS = {
-    LEFT: (0, -2),
+    UP: (-2, 0),
     DOWN: (3, 0),
     RIGHT: (0, 7),
-    UP: (-5, 0),
+    LEFT: (0, -5),
 }
 
 ARROW_TO_CHAR = {

@@ -30,11 +30,10 @@ class ImvimController:
             and not char_to_arrow(key_pressed, self._imvimModel) and not handle_spacebar(key_pressed, self._imvimModel):
             # if none of the keys are detcted, insert char (will need to change later when we add more stuff)
             self._imvimModel.insert_char_at_cursor(event.char)
-
+        
 
         #TESTING
-        #self._imvimModel.player_text = ["abcdefg", "hijklmno"]
-        #print(self._imvimModel.get_line_length(1))
+        #print("player text: " + str(self._imvimModel.get_player_text()))
 
         # pass keys pressed to the thing displaying on the gui
         #self._imvimView.display_keypress()

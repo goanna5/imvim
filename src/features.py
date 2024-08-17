@@ -24,7 +24,7 @@ def char_to_arrow(key_pressed, model):
     If input is "udlr" convert this to a direction
     """
     if key_pressed in [UP, DOWN, LEFT, RIGHT]:
-        model.move_cursor(key_pressed[0], key_pressed[1])
+        model.move_cursor(MOVE_DELTAS[key_pressed][0], MOVE_DELTAS[key_pressed][1])
         return True
     return False
 
