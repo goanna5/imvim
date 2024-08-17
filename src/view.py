@@ -86,7 +86,7 @@ class TextGrid(tk.Canvas):
         x1 = TEXT_OFFSET*self.cell_width-10
         y1 = (row_num)*self.cell_height
         x2 = self.width
-        y2 = (1+row_num)*self.cell_height
+        y2 = (1+row_num)*self.cell_height+2
         self.create_rectangle(x1, y1, x2, y2, fill=self.bg_colour, width=0)
         self.print_line(text, row_num)
 

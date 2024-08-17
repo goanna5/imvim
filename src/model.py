@@ -35,18 +35,21 @@ class ImvimModel():
         if self.is_printable(char):
             col, row = self.cursor_coords
             if len(self.player_text) <= row:
-                self.player_text.append([])
+                self.player_text.append("")
             elif col >= self.max_line_width:
                 row = row + 1
                 self.cursor_coords = (1, row)
-                self.player_text.append([])
+                self.player_text.append("")
             #else:
                 
-            self.player_text[row] = self.player_text[row][:col] + [char] + self.player_text[row][col:self.max_line_width - 1]
+            self.player_text[row] = self.player_text[row][:col] + char + self.player_text[row][col:self.max_line_width - 1]
             #self.player_text[row].append(char)
             col += 1
             self.move_cursor(0, len(char))
         #self.move_cursor(len(char), 0)
+            
+    def enter_at_cursor(self) -> None:
+        pass
 
 
     def move_cursor(self, row_delta: int, col_delta: int) -> None:
@@ -60,10 +63,12 @@ class ImvimModel():
     # deletes contents of the current row (row array is still in the overall array)
     def delete_current_row(self):
         if self.player_text != []:
-            row = self.player_text[self.cursor_coords[1]]
+            """row = self.player_text[self.cursor_coords[1]]
             for i in range(len(row)):
-                row.pop()
-        self.move_cursor(0, len(row))
+                row.pop()"""
+            self.player_text[self.cursor_coords[1]] = ""
+        # self.move_cursor(0, len(row))
+        self.move_cursor(0, 0)
 
     def is_level_beaten(self):
         return self.player_text == self.goal_text
@@ -132,6 +137,8 @@ class ImvimModel():
     
     #remove the spac from the terminal
     def delete_space(self) -> None:
+        # currently broken
+        # NEED TO CHANGE - CURRENTLY FOR THE ONE-CHARACTER-PER-ENTRY THINGO
         row = self.player_text[self.cursor_coords[1]]
         for i in range(4):
             #this is in case the space is across two lines
