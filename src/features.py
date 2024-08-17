@@ -1,12 +1,14 @@
 from constants import *
 
-def handle_back_and_del(key_pressed, model):
+def handle_back_and_del(key_pressed, model) -> bool:
     """
     If input is backspace or delete,
     remove entire row
     """
     if key_pressed in ["BackSpace", "Delete"]:
         model.delete_current_row()
+        return True
+    return False
 
 def arrow_to_char(key_pressed, model):
     """
@@ -14,13 +16,17 @@ def arrow_to_char(key_pressed, model):
     """
     if key_pressed in ARROW_TO_CHAR:
         model.insert_char_at_cursor(ARROW_TO_CHAR[key_pressed])
+        return True
+    return False
 
 def char_to_arrow(key_pressed, model):
     """
     If input is "udlr" convert this to a direction
     """
     if key_pressed in [UP, DOWN, LEFT, RIGHT]:
-            model.move_cursor(key_pressed[0], key_pressed[1])
+        model.move_cursor(key_pressed[0], key_pressed[1])
+        return True
+    return False
 
 def handle_spacebar(key_pressed, model):
     """
@@ -28,6 +34,8 @@ def handle_spacebar(key_pressed, model):
     """
     if key_pressed == "space":
         model.insert_char_at_cursor("space")
+        return True
+    return False
 
 def caeser_cipher(input, model, other):
     """
