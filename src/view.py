@@ -89,10 +89,21 @@ class TextGrid(tk.Canvas):
     def redraw(self, text, prior_cursor=None, cursor_pos=None, split_point=None) -> None:
         self.split_point = split_point
         if cursor_pos != None:
+            # remove cursor from previous position
+            if prior_cursor != None:
+                #this checks that text is not empty (i.e. terminal is not blank)
+                #would be better to just insert the empty string, 
+                #however not sure if that would break something else, 
+                #so have not yet
+                if text:
+                    self.redraw_line(prior_cursor[1]+1, text[prior_cursor[1]])
+                else:
+                    self.redraw_line(prior_cursor[1]+1, "")
             # draw cursor
-            if prior_cursor:
-                self.redraw_line(prior_cursor[1]+1, text[prior_cursor[1]])
-            self.redraw_line(cursor_pos[1]+1, text[cursor_pos[1]])
+            if text:
+                self.redraw_line(cursor_pos[1]+1, text[cursor_pos[1]])
+            else:
+                self.redraw_line(cursor_pos[1]+1, "")
             self.draw_cursor(cursor_pos)
 
 
