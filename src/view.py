@@ -123,11 +123,11 @@ class KeyPressFrame(tk.Canvas):
         self.clear()
         square_height = 75
         for i in range(self.capacity):
-            if i >= len(keys):
+            if i >= len(keys) or keys[-1-i] == " ":
                 return
-            this_key = keys[i]
+            this_key = keys[-1-i]
             cell_width = self.width // self.capacity
-            center_x = self.width - i*cell_width - cell_width//2
+            center_x = i*cell_width + cell_width//2
             center_y = self.height // 2
 
             y1 = center_y - square_height//2
@@ -142,6 +142,8 @@ class KeyPressFrame(tk.Canvas):
                 x1 = center_x - (4*square_height)//5
                 x2 = x1 + (8*square_height)//5
                 self.create_rectangle(x1, y1, x2, y2, fill="white")
+            if len(this_key) == 1:
+                this_key = this_key.upper()
             self.create_text((center_x, center_y), text=this_key, anchor=CENTER, font="Arial")
 
     def init_redraw(self) -> None:

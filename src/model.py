@@ -41,8 +41,9 @@ class ImvimModel():
                 self.cursor_coords = (1, row)
                 self.player_text.append([])
             #else:
-                #self.player_text[row] = self.player_text[row][:col] + char + self.player_text[row][col:]
-            self.player_text[row].append(char)
+                
+            self.player_text[row] = self.player_text[row][:col] + [char] + self.player_text[row][col:self.max_line_width - 1]
+            #self.player_text[row].append(char)
             col += 1
             self.move_cursor(0, len(char))
         #self.move_cursor(len(char), 0)
