@@ -89,3 +89,18 @@ class ImvimModel():
     def get_historical_keypress(self):
         return self.historical_keypress
 
+    def get_line(self, line_num):
+        # Return line specified by line num
+        return self.player_text[line_num]
+
+    def get_line_length(self, line_num):
+        # Return length of the line specified by line num
+        return len(self.get_line(line_num))
+
+    def get_current_line(self):
+        # Return current line
+        return self.get_line(self.cursor_coords[1])
+
+    def get_current_line_length(self):
+        # Return length of current line
+        return len(self.get_current_line())
