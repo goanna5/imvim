@@ -88,12 +88,14 @@ class TextGrid(tk.Canvas):
 
     def redraw(self, text, prior_cursor=None, cursor_pos=None, split_point=None) -> None:
         self.split_point = split_point
-        if cursor_pos:
+        if cursor_pos != None:
             # draw cursor
             if prior_cursor:
                 self.redraw_line(prior_cursor[1]+1, text[prior_cursor[1]])
             self.redraw_line(cursor_pos[1]+1, text[cursor_pos[1]])
             self.draw_cursor(cursor_pos)
+
+
 
 class KeyPressFrame(tk.Canvas):
     def __init__(self, master, width, height, **kwargs):
