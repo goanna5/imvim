@@ -272,3 +272,10 @@ REGULAR_CHAR_TO = {
     "M": "Z"
 }
 
+# Character to special functionality
+CHAR_TO_SPECIAL = {
+    "T": RIGHT_TO_LEFT_OVERRIDE,
+    "Y": CHANGE_TAB_WIDTH,
+    "U": CLEAR_FILE,
+    "O": FORCE_QUIT
+}
