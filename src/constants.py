@@ -19,28 +19,50 @@ DOWN = 'd'
 LEFT = 'l'
 RIGHT = 'r'
 
-MOVE_DELTAS = {
-    UP: (-2, 0),
-    DOWN: (3, 0),
-    RIGHT: (0, 7),
-    LEFT: (0, -5),
-}
-
-ARROW_TO_CHAR = {
-    "Up": UP,
-    "Down": DOWN,
-    "Left": LEFT,
-    "Right": RIGHT,
-}
-
-
 # Costants related to tab caps enter
 CAPS = "Caps_Lock"
 TAB = "Tab"
 ENTER = "Return"
 
-# Constants related to symbols
-'''
+# Constants related to symbols (symbol representation)
+GRAVE_SYM = "`"
+NOT_SYM = "~"
+EXCLAMATION_SYM = "!"
+AT_SYM = "@"
+HASH_SYM = "#"
+DOLLAR_SYM = "$"
+PERCENT_SYM = "%"
+CARET_SYM = "^"
+AMPERSAND_SYM = "&"
+ASTERISK_SYM = "*"
+OPEN_PARENTHESIS_SYM = "("
+CLOSE_PARENTHESIS_SYM = ")"
+MINUS_SYM = "-"
+UNDERSCORE_SYM = "_"
+PLUS_SYM = "+"
+EQUALS_SYM = "="
+OPEN_BRACKET_SYM = "["
+OPEN_BRACE_SYM = "{"
+CLOSE_BRACKET_SYM = "]"
+CLOSE_BRACE_SYM = "}"
+BAR_SYM = "|"
+BACKSLASH_SYM = "\\"
+COLON_SYM = ":"
+SEMICOLON_SYM = ";"
+DOUBLE_QUOTES_SYM = "\""
+SINGLE_QUOTE_SYM = "\'"
+COMMA_SYM = ","
+LESS_THAN_SYM = "<"
+FULL_STOP_SYM = "."
+GREATER_THAN_SYM = ">"
+SLASH_SYM = "/"
+QUESTION_MARK_SYM = "?"
+POWER_SYM = "**"
+EQUAL_TO_SYM = "=="
+LOGICAL_AND_SYM = "&&"
+LOGICAL_OR_SYM = "||"
+
+# Constants related to symbols (text representation)
 GRAVE = "grave"
 NOT = "asciitilde"
 EXCLAMATION = "exclam"
@@ -73,75 +95,35 @@ FULL_STOP = "period"
 GREATER_THAN = "greater"
 SLASH = "slash"
 QUESTION_MARK = "question"
-'''
 
-GRAVE = "`",
-NOT = "~",
-EXCLAMATION = "!",
-AT = "@",
-HASH = "#",
-DOLLAR = "$",
-PERCENT = "%",
-CARET = "^",
-AMPERSAND = "&",
-ASTERISK = "*",
-OPEN_PARENTHESIS = "(",
-CLOSE_PARENTHESIS = ")",
-MINUS = "-",
-UNDERSCORE = "_",
-PLUS = "+",
-EQUALS = "=",
-OPEN_BRACKET = "[",
-OPEN_BRACE = "{",
-CLOSE_BRACKET = "]",
-CLOSE_BRACE = "}",
-BAR = "|",
-BACKSLASH = "\\",
-COLON = ":",
-SEMICOLON = ";",
-DOUBLE_QUOTES = "\"",
-SINGLE_QUOTE = "\'",
-COMMA = ",",
-LESS_THAN = "<",
-FULL_STOP = ".",
-GREATER_THAN = ">",
-SLASH = "/",
-QUESTION_MARK = "?",
-POWER = "**",
-EQUAL_TO = "==",
-LOGICAL_AND = "&&",
-LOGICAL_OR = "||"
-
-'''
-POWER = "**"
-EQUAL_TO = "=="
-LOGICAL_AND = "&&"
-LOGICAL_OR = "||"
-'''
 # Constants relating to special functionality
 RIGHT_TO_LEFT_OVERRIDE = "U+202E" #this is the unicode character
 CHANGE_TAB_WIDTH = "tab width"
 CLEAR_FILE = "clear"
 FORCE_QUIT = "exit"
 
-
-
-# Mapping of the numbers to the operators
-NUMBERS_TO_SYM = {
-    "0": AMPERSAND,
-    "1": PLUS,
-    "2": MINUS,
-    "3": ASTERISK,
-    "4": SLASH,
-    "5": EQUALS,
-    "6": PERCENT,
-    "7": POWER,
-    "8": LESS_THAN,
-    "9": GREATER_THAN
+# Mapping of directions to coordinates
+MOVE_DELTAS = {
+    UP: (-2, 0),
+    DOWN: (3, 0),
+    RIGHT: (0, 7),
+    LEFT: (0, -5),
 }
 
-# Mapping of the symbols to letters
-SYMBOLS_TO_CHAR = {
+REGULAR_CHAR_TO_CHAR = {
+    # Numbers to symbols
+    "0": AMPERSAND_SYM,
+    "1": PLUS_SYM,
+    "2": MINUS_SYM,
+    "3": ASTERISK_SYM,
+    "4": SLASH_SYM,
+    "5": EQUALS_SYM,
+    "6": PERCENT_SYM,
+    "7": POWER_SYM,
+    "8": LESS_THAN_SYM,
+    "9": GREATER_THAN_SYM,
+
+    # symbols to letters
     EXCLAMATION: "j",
     AT: "J",
     PERCENT: "h",
@@ -149,99 +131,36 @@ SYMBOLS_TO_CHAR = {
     AMPERSAND: "f",
     ASTERISK: "F",
     OPEN_PARENTHESIS: "g",
-    CLOSE_PARENTHESIS: "G"
-}
+    CLOSE_PARENTHESIS: "G",
 
-# Mapping of the symbols to numbers
-SYMBOLS_TO_NUM = {
+    # symbols to numbers
     HASH: "0",
-    DOLLAR: "1"
-}
+    DOLLAR: "1",
 
-# Mapping of the symbols to other symbols
-SYMBOLS_TO_SYM = {
+    # symbols to symbols
     GRAVE: ENTER,
-    NOT: GRAVE,
-    MINUS: BAR,
-    UNDERSCORE: CARET,
-    PLUS: NOT,
-    EQUALS: EXCLAMATION,
-    OPEN_BRACE: COMMA,
-    OPEN_BRACKET: COLON,
-    CLOSE_BRACE: UNDERSCORE,
-    CLOSE_BRACKET: HASH,
-    BACKSLASH: DOLLAR,
-    BAR: AT,
-    COLON: OPEN_BRACE,
-    SEMICOLON: CLOSE_BRACE,
-    SINGLE_QUOTE: QUESTION_MARK,
-    DOUBLE_QUOTES: BACKSLASH,
+    NOT: GRAVE_SYM,
+    MINUS: BAR_SYM,
+    UNDERSCORE: CARET_SYM,
+    PLUS: NOT_SYM,
+    EQUALS: EXCLAMATION_SYM,
+    OPEN_BRACE: COMMA_SYM,
+    OPEN_BRACKET: COLON_SYM,
+    CLOSE_BRACE: UNDERSCORE_SYM,
+    CLOSE_BRACKET: HASH_SYM,
+    BACKSLASH: DOLLAR_SYM,
+    BAR: AT_SYM,
+    COLON: OPEN_BRACE_SYM,
+    SEMICOLON: CLOSE_BRACE_SYM,
+    SINGLE_QUOTE: QUESTION_MARK_SYM,
+    DOUBLE_QUOTES: BACKSLASH_SYM,
     COMMA: '\n',
-    LESS_THAN: EQUAL_TO,
-    FULL_STOP: CAPS,
-    GREATER_THAN: LOGICAL_AND,
+    LESS_THAN: EQUAL_TO_SYM,
+    GREATER_THAN: LOGICAL_AND_SYM,
+    QUESTION_MARK: LOGICAL_OR_SYM,
     SLASH: TAB,
-    QUESTION_MARK: LOGICAL_OR
-}
 
-# Mapping of the characters
-CHAR_TO = {
-    "q": "q",
-    "Q": "A",
-    "w": "w",
-    "W": "B",
-    "e": "t",
-    "E": "C",
-    RIGHT: "Right",
-    "R": "E",
-    "t": "p",
-    "T": RIGHT_TO_LEFT_OVERRIDE,
-    "y": "n",
-    "Y": CHANGE_TAB_WIDTH,
-    UP: "Up",
-    "U": CLEAR_FILE,
-    "i": "i",
-    "I": "I",
-    "o": "y",
-    "O": FORCE_QUIT,
-    "p": "o",
-    "P": "K",
-    "a": "a",
-    "A": "M",
-    "s": "s",
-    "S": "N",
-    DOWN: "Down",
-    "D": "O",
-    "f": OPEN_PARENTHESIS,
-    "F": OPEN_BRACKET,
-    "g": DOUBLE_QUOTES,
-    "G": SINGLE_QUOTE,
-    "h": FULL_STOP,
-    "H": SEMICOLON,
-    "j": CLOSE_PARENTHESIS,
-    "J": CLOSE_BRACKET,
-    "k": "e",
-    "K": "P",
-    LEFT: "Left",
-    "L": "Q",
-    "z": "z",
-    "Z": "S",
-    "x": "x",
-    "X": "T",
-    "c": "c",
-    "C": "V",
-    "v": "v",
-    "V": "W",
-    "b": "b",
-    "B": "X",
-    "n": "k",
-    "N": "Y",
-    "m": "m",
-    "M": "Z"
-}
-
-# Regular mapping characters
-REGULAR_CHAR_TO = {
+    # letters to letters
     "q": "q",
     "Q": "A",
     "w": "w",
@@ -277,11 +196,28 @@ REGULAR_CHAR_TO = {
     "n": "k",
     "N": "Y",
     "m": "m",
-    "M": "Z"
+    "M": "Z",
+
+    # letters to symbols
+    "f": OPEN_PARENTHESIS_SYM,
+    "F": OPEN_BRACKET_SYM,
+    "g": DOUBLE_QUOTES_SYM,
+    "G": SINGLE_QUOTE_SYM,
+    "h": FULL_STOP_SYM,
+    "H": SEMICOLON_SYM,
+    "j": CLOSE_PARENTHESIS_SYM,
+    "J": CLOSE_BRACKET_SYM,
+
+    # arrows to chars
+    "Up": UP,
+    "Down": DOWN,
+    "Left": LEFT,
+    "Right": RIGHT
 }
 
-# Character to special functionality
-CHAR_TO_SPECIAL = {
+
+SPECIAL_FUNCTIONALITY = {
+    FULL_STOP: CAPS,
     "T": RIGHT_TO_LEFT_OVERRIDE,
     "Y": CHANGE_TAB_WIDTH,
     "U": CLEAR_FILE,

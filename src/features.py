@@ -10,20 +10,11 @@ def handle_back_and_del(key_pressed, model) -> bool:
         return True
     return False
 
-def arrow_to_char(key_pressed, model):
-    """
-    If input is an arrow key, write corresponding letter
-    """
-    if key_pressed in ARROW_TO_CHAR:
-        model.insert_char_at_cursor(ARROW_TO_CHAR[key_pressed])
-        return True
-    return False
-
 def char_to_arrow(key_pressed, model):
     """
     If input is "udlr" convert this to a direction
     """
-    if key_pressed in [UP, DOWN, LEFT, RIGHT]:
+    if key_pressed in MOVE_DELTAS:
         model.move_cursor(MOVE_DELTAS[key_pressed][0], MOVE_DELTAS[key_pressed][1])
         return True
     return False
@@ -37,21 +28,9 @@ def handle_spacebar(key_pressed, model):
         return True
     return False
 
-def char_to_char(key_pressed, model):
-    """
-    Changes char to their respective key binding for non special chars
-    """
-    if key_pressed in REGULAR_CHAR_TO:
-        model.insert_char_at_cursor(REGULAR_CHAR_TO[key_pressed])
-        return True
-    return False
-
-def num_to_symbols(key_pressed, model):
-    """
-    Changes char to their respective key binding for non special chars
-    """
-    if key_pressed in NUMBERS_TO_SYM:
-        model.insert_char_at_cursor(NUMBERS_TO_SYM[key_pressed])
+def regular_char_to_char(key_pressed, model):
+    if key_pressed in REGULAR_CHAR_TO_CHAR:
+        model.insert_char_at_cursor(REGULAR_CHAR_TO_CHAR[key_pressed])
         return True
     return False
 

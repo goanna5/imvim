@@ -27,9 +27,9 @@ class ImvimController:
         key_pressed = event.keysym
         print(key_pressed)
 
-        if not handle_back_and_del(key_pressed, self._imvimModel) and not arrow_to_char(key_pressed, self._imvimModel) \
-            and not char_to_arrow(key_pressed, self._imvimModel) and not handle_spacebar(key_pressed, self._imvimModel) \
-            and not char_to_char(key_pressed, self._imvimModel) and not num_to_symbols(key_pressed, self._imvimModel):
+        # We should probably make this not as gross eventually vv
+        if not handle_back_and_del(key_pressed, self._imvimModel) and not char_to_arrow(key_pressed, self._imvimModel) \
+            and not handle_spacebar(key_pressed, self._imvimModel) and not regular_char_to_char(key_pressed, self._imvimModel):
             # if none of the keys are detcted, insert char (will need to change later when we add more stuff)
             self._imvimModel.insert_char_at_cursor(event.char)
         
