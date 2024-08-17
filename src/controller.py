@@ -26,7 +26,12 @@ class ImvimController:
         key_pressed = event.keysym
         print(key_pressed)
 
+
         handle_back_and_del(key_pressed, ImvimModel)
+
+        #TESTING
+        #self._imvimModel.player_text = ["abcdefg", "hijklmno"]
+        #print(self._imvimModel.get_line_length(1))
 
         # pass keys pressed to the thing displaying on the gui
         #self._imvimView.display_keypress()
