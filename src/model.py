@@ -7,7 +7,7 @@ class ImvimModel():
         self.level = 0
         self.goal_text = GOAL_ZERO
         self.historical_keypress = [" "] * 10
-        self.max_line_width = 10
+        self.max_line_width = 60
 
     
     def get_cursor_coords(self):
@@ -35,7 +35,6 @@ class ImvimModel():
         if self.is_printable(char):
             col, row = self.cursor_coords
             if len(self.player_text) <= row:
-                print("what")
                 self.player_text.append([])
             elif col >= self.max_line_width:
                 row = row + 1
@@ -138,7 +137,6 @@ class ImvimModel():
             if len(row) < 1:
                 self.cursor_coords = (self.end_of_previous_row(self.cursor_coords[1]),self.cursor_coords[1] - 1)
                 row = self.player_text[self.cursor_coords[1]]
-                print(self.cursor_coords[1], row)
             row.pop()
         self.move_cursor(0, 4)
     

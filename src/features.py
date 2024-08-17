@@ -34,7 +34,13 @@ def handle_spacebar(key_pressed, model):
 
 def regular_char_to_char(key_pressed, model):
     if key_pressed in REGULAR_CHAR_TO_CHAR:
-        model.insert_char_at_cursor(REGULAR_CHAR_TO_CHAR[key_pressed])
+        if key_pressed in SYMBOLS_MORE_THAN_ONE_CHAR:
+            #this doesn't work -> will manually write
+            to_add = str(SYMBOLS_MORE_THAN_ONE_CHAR[key_pressed])
+            for i in str(to_add):
+                model.insert_char_at_cursor(i)
+        else:
+            model.insert_char_at_cursor(REGULAR_CHAR_TO_CHAR[key_pressed])
         return True
     return False
 
@@ -51,11 +57,17 @@ def handle_enter(key_pressed, model):
     """
     If input is enter/return/grave, create a new row
     """
-    # if key_pressed in SYM_ENTERS:
-    #   will not be inserting a new char, will insert a new row/line!!!
-    #     model.insert_char_at_cursor(ENTER)
-    #     return True
-    # return False
+    if key_pressed in SYM_ENTERS:
+      #will not be inserting a new char, will insert a new row/line!!!
+       # model.insert_char_at_cursor(ENTER)
+        return True
+    return False
+
+def handle_special(key_pressed, model):
+    """
+    If input is . T Y U O then call the respective special handlers
+    """
+    pass
 
 def convert_space(key_pressed, model):
     """
@@ -73,4 +85,3 @@ def convert_space(key_pressed, model):
             model.insert_char_at_cursor(" ")
             return True
     return False
-    #check if the last letter pressed is e, then check the previous 4 key presses! (not the ones stored in user_text, the ones stored in history)
