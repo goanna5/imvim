@@ -6,7 +6,7 @@ class ImvimModel():
         self.cursor_coords = (0,0)
         self.level = 0
         self.goal_text = GOAL_ZERO
-        self.historical_keypress = []
+        self.historical_keypress = [" "] * 10
         self.max_line_width = 60
 
     
@@ -92,7 +92,7 @@ class ImvimModel():
         self.goal_text = GOAL_TEXTS[self.level]
 
     def set_historical_keypress(self, keypressed):
-        if len(self.historical_keypress) > 10:
+        if len(self.historical_keypress) >= 10:
             self.historical_keypress = self.historical_keypress[1:]
         self.historical_keypress.append(keypressed)
     

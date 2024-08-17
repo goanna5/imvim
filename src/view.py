@@ -145,7 +145,7 @@ class KeyPressFrame(tk.Canvas):
             self.create_text((center_x, center_y), text=this_key, anchor=CENTER, font="Arial")
 
     def init_redraw(self) -> None:
-        self.create_text(self.width//2, self.height//2, text="Your keypress history will go here", anchor=CENTER, font=("Arial", 16), fill="white")
+        self.create_text(self.width//2, self.height//2, text="Your keypress history will go here, most recent to the left", anchor=CENTER, font=("Arial", 16), fill="white")
 
 
 class ImvimView:
