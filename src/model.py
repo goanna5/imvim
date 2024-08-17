@@ -3,6 +3,7 @@ from constants import *
 class ImvimModel():
     def __init__(self) -> None:
         self.player_text = []
+        self.text_length = []
         self.cursor_coords = (0,0)
         self.level = 0
         self.goal_text = GOAL_ZERO
@@ -32,6 +33,8 @@ class ImvimModel():
             self.player_text[row_num] = new_text
     
     def insert_char_at_cursor(self, char: str) -> None:
+        #space is a string at this point
+        print(self.player_text)
         col, row = self.cursor_coords
         if len(self.player_text) <= row:
             self.player_text.append([])
@@ -44,7 +47,7 @@ class ImvimModel():
             return
         #else:
             #self.player_text[row] = self.player_text[row][:col] + char + self.player_text[row][col:]
-        self.player_text[row].append(char)
+        self.player_text[row].append(str(char))
         col += 1
         self.move_cursor(0, len(char))
         #self.move_cursor(len(char), 0)
