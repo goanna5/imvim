@@ -65,16 +65,32 @@ class TextGrid(tk.Canvas):
         for i, line in enumerate(text):
             self.print_line(line, i+1)
 
-    def redraw(self, text, level, cursor_pos=None, split_point=None) -> None:
+    def draw(self, text, level, cursor_pos=None, split_point=None) -> None:
         self.create_rectangle(0, 0, self.width, self.height, fill=self.bg_colour)
         self.print_line_nums()
         self.split_point = split_point
         self.text_colour = "white"
         self.draw_heading(level)
-        self.text_colour = "lime"
+        #self.text_colour = "lime"
         self.print_text(text)
         if cursor_pos:
             # draw cursor
+            self.draw_cursor(cursor_pos)
+
+    def redraw_line(self, row_num, text) -> None:
+        x1 = TEXT_OFFSET*self.cell_width-10
+        y1 = (row_num)*self.cell_height
+        x2 = self.width
+        y2 = (1+row_num)*self.cell_height
+        self.create_rectangle(x1, y1, x2, y2, fill=self.bg_colour, width=0)
+        self.print_line(text, row_num)
+
+
+    def redraw(self, text, cursor_pos=None, split_point=None) -> None:
+        self.split_point = split_point
+        if cursor_pos:
+            # draw cursor
+            self.redraw_line(cursor_pos[1]+1, text[cursor_pos[1]])
             self.draw_cursor(cursor_pos)
 
 class KeyPressFrame(tk.Canvas):
@@ -110,7 +126,9 @@ class KeyPressFrame(tk.Canvas):
             self.create_text((center_x, center_y), text=this_key, anchor=CENTER, font="Arial")
 
 class ImvimView:
-    def display_view(self, root):
+    def display_view(self, root, model):
+        self.userTextFrame.draw(model.get_player_text(), model.get_level(), model.get_cursor_coords())
+        self.taskFrame.draw(model.get_goal_text(), model.get_level())
         root.mainloop()
 
     def create_view(self, root):
@@ -142,22 +160,22 @@ class ImvimView:
         # model is a ImvimModel
         cursor_pos = model.get_cursor_coords()
         split_point = model.get_last_correct_char()
+        #split_point = (0,0)
         user_text = model.get_player_text()
-        level = model.get_level()
-        self.userTextFrame.redraw(user_text, level, cursor_pos=cursor_pos, split_point=split_point)
+        self.userTextFrame.redraw(user_text, cursor_pos=cursor_pos, split_point=split_point)
 
         goal_text = model.get_goal_text()
-        self.taskFrame.redraw(goal_text, level, split_point=split_point)
+        self.taskFrame.redraw(goal_text, split_point=split_point)
 
     def test_redraw(self):
         # DELETE THIS WHOLE METHOD - FOR TESTING PURPOSES ONLY
         cursor_pos = (20, 1)
         split_point = (10,1)
         user_text = ["This is an example of", "what the game could look like."]
-        self.userTextFrame.redraw(user_text, 0, cursor_pos=cursor_pos, split_point=split_point)
+        self.userTextFrame.redraw(user_text, cursor_pos=cursor_pos, split_point=split_point)
 
         goal_text = ["This is an example of", "what the goal output could be."]
-        self.taskFrame.redraw(goal_text, 0, split_point=split_point)
+        self.taskFrame.redraw(goal_text, split_point=split_point)
 
         self.keyPressFrame.redraw(["E", "D", "C", "B", "A", "SPACE", "H", "BACK", "SHIFT", "SPACE"])
 

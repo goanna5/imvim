@@ -66,7 +66,7 @@ class ImvimModel():
             else:
                 # last correct char is on this row
                 for j, char in enumerate(row):
-                    if char != self.player_text[i][j]:
+                    if j >= len(self.player_text[i]) or char != self.player_text[i][j]:
                         return (i, j)
         return None
     

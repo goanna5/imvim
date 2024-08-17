@@ -18,7 +18,7 @@ class ImvimController:
         # handle key presses 
         master.bind('<KeyPress>', self.handle_keypress)
         ### redraw gui ### <- maybe a view method, may need to make one in controller
-        self._imvimView.display_view(master)
+        self._imvimView.display_view(master, self._imvimModel)
 
     def handle_keypress(self, event: tk.Event) -> None:
         # method to handle all the different functionality from pressing keys
