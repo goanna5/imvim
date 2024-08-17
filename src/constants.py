@@ -19,12 +19,28 @@ DOWN = 'd'
 LEFT = 'l'
 RIGHT = 'r'
 
+MOVE_DELTAS = {
+    UP: (-2, 0),
+    DOWN: (3, 0),
+    RIGHT: (0, 7),
+    LEFT: (0, -5),
+}
+
+ARROW_TO_CHAR = {
+    "Up": UP,
+    "Down": DOWN,
+    "Left": LEFT,
+    "Right": RIGHT,
+}
+
+
 # Costants related to tab caps enter
 CAPS = "Caps_Lock"
 TAB = "Tab"
 ENTER = "Return"
 
 # Constants related to symbols
+'''
 GRAVE = "grave"
 NOT = "asciitilde"
 EXCLAMATION = "exclam"
@@ -57,31 +73,58 @@ FULL_STOP = "period"
 GREATER_THAN = "greater"
 SLASH = "slash"
 QUESTION_MARK = "question"
+'''
 
+GRAVE = "`",
+NOT = "~",
+EXCLAMATION = "!",
+AT = "@",
+HASH = "#",
+DOLLAR = "$",
+PERCENT = "%",
+CARET = "^",
+AMPERSAND = "&",
+ASTERISK = "*",
+OPEN_PARENTHESIS = "(",
+CLOSE_PARENTHESIS = ")",
+MINUS = "-",
+UNDERSCORE = "_",
+PLUS = "+",
+EQUALS = "=",
+OPEN_BRACKET = "[",
+OPEN_BRACE = "{",
+CLOSE_BRACKET = "]",
+CLOSE_BRACE = "}",
+BAR = "|",
+BACKSLASH = "\\",
+COLON = ":",
+SEMICOLON = ";",
+DOUBLE_QUOTES = "\"",
+SINGLE_QUOTE = "\'",
+COMMA = ",",
+LESS_THAN = "<",
+FULL_STOP = ".",
+GREATER_THAN = ">",
+SLASH = "/",
+QUESTION_MARK = "?",
+POWER = "**",
+EQUAL_TO = "==",
+LOGICAL_AND = "&&",
+LOGICAL_OR = "||"
+
+'''
 POWER = "**"
 EQUAL_TO = "=="
 LOGICAL_AND = "&&"
 LOGICAL_OR = "||"
-
+'''
 # Constants relating to special functionality
 RIGHT_TO_LEFT_OVERRIDE = "U+202E" #this is the unicode character
 CHANGE_TAB_WIDTH = "tab width"
 CLEAR_FILE = "clear"
 FORCE_QUIT = "exit"
 
-MOVE_DELTAS = {
-    UP: (-2, 0),
-    DOWN: (3, 0),
-    RIGHT: (0, 7),
-    LEFT: (0, -5),
-}
 
-ARROW_TO_CHAR = {
-    "Up": UP,
-    "Down": DOWN,
-    "Left": LEFT,
-    "Right": RIGHT,
-}
 
 # Mapping of the numbers to the operators
 NUMBERS_TO_SYM = {
