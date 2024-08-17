@@ -110,16 +110,8 @@ MOVE_DELTAS = {
     LEFT: (0, -5),
 }
 
-# Mapping of the arrows to chars
-ARROW_TO_CHAR = {
-    "Up": UP,
-    "Down": DOWN,
-    "Left": LEFT,
-    "Right": RIGHT,
-}
-
-# Mapping of the numbers to the operators
-NUMBERS_TO_SYM = {
+REGULAR_CHAR_TO_CHAR = {
+    # Numbers to symbols
     "0": AMPERSAND_SYM,
     "1": PLUS_SYM,
     "2": MINUS_SYM,
@@ -129,11 +121,9 @@ NUMBERS_TO_SYM = {
     "6": PERCENT_SYM,
     "7": POWER_SYM,
     "8": LESS_THAN_SYM,
-    "9": GREATER_THAN_SYM
-}
+    "9": GREATER_THAN_SYM,
 
-# Mapping of the symbols to letters
-SYMBOLS_TO_CHAR = {
+    # symbols to letters
     EXCLAMATION: "j",
     AT: "J",
     PERCENT: "h",
@@ -141,17 +131,13 @@ SYMBOLS_TO_CHAR = {
     AMPERSAND: "f",
     ASTERISK: "F",
     OPEN_PARENTHESIS: "g",
-    CLOSE_PARENTHESIS: "G"
-}
+    CLOSE_PARENTHESIS: "G",
 
-# Mapping of the symbols to numbers
-SYMBOLS_TO_NUM = {
+    # symbols to numbers
     HASH: "0",
-    DOLLAR: "1"
-}
+    DOLLAR: "1",
 
-# Mapping of the symbols to other symbols
-SYMBOLS_TO_SYM = {
+    # symbols to symbols
     GRAVE: ENTER,
     NOT: GRAVE_SYM,
     MINUS: BAR_SYM,
@@ -170,70 +156,11 @@ SYMBOLS_TO_SYM = {
     DOUBLE_QUOTES: BACKSLASH_SYM,
     COMMA: '\n',
     LESS_THAN: EQUAL_TO_SYM,
-    FULL_STOP: CAPS,
     GREATER_THAN: LOGICAL_AND_SYM,
+    QUESTION_MARK: LOGICAL_OR_SYM,
     SLASH: TAB,
-    QUESTION_MARK: LOGICAL_OR_SYM
-}
 
-# Mapping of the characters
-CHAR_TO = {
-    "q": "q",
-    "Q": "A",
-    "w": "w",
-    "W": "B",
-    "e": "t",
-    "E": "C",
-    RIGHT: "Right",
-    "R": "E",
-    "t": "p",
-    "T": RIGHT_TO_LEFT_OVERRIDE,
-    "y": "n",
-    "Y": CHANGE_TAB_WIDTH,
-    UP: "Up",
-    "U": CLEAR_FILE,
-    "i": "i",
-    "I": "I",
-    "o": "y",
-    "O": FORCE_QUIT,
-    "p": "o",
-    "P": "K",
-    "a": "a",
-    "A": "M",
-    "s": "s",
-    "S": "N",
-    DOWN: "Down",
-    "D": "O",
-    "f": OPEN_PARENTHESIS,
-    "F": OPEN_BRACKET,
-    "g": DOUBLE_QUOTES,
-    "G": SINGLE_QUOTE,
-    "h": FULL_STOP,
-    "H": SEMICOLON,
-    "j": CLOSE_PARENTHESIS,
-    "J": CLOSE_BRACKET,
-    "k": "e",
-    "K": "P",
-    LEFT: "Left",
-    "L": "Q",
-    "z": "z",
-    "Z": "S",
-    "x": "x",
-    "X": "T",
-    "c": "c",
-    "C": "V",
-    "v": "v",
-    "V": "W",
-    "b": "b",
-    "B": "X",
-    "n": "k",
-    "N": "Y",
-    "m": "m",
-    "M": "Z"
-}
-
-# Regular mapping characters
-REGULAR_CHAR_TO = {
+    # letters to letters
     "q": "q",
     "Q": "A",
     "w": "w",
@@ -269,11 +196,28 @@ REGULAR_CHAR_TO = {
     "n": "k",
     "N": "Y",
     "m": "m",
-    "M": "Z"
+    "M": "Z",
+
+    # letters to symbols
+    "f": OPEN_PARENTHESIS_SYM,
+    "F": OPEN_BRACKET_SYM,
+    "g": DOUBLE_QUOTES_SYM,
+    "G": SINGLE_QUOTE_SYM,
+    "h": FULL_STOP_SYM,
+    "H": SEMICOLON_SYM,
+    "j": CLOSE_PARENTHESIS_SYM,
+    "J": CLOSE_BRACKET_SYM,
+
+    # arrows to chars
+    "Up": UP,
+    "Down": DOWN,
+    "Left": LEFT,
+    "Right": RIGHT
 }
 
-# Character to special functionality
-CHAR_TO_SPECIAL = {
+
+SPECIAL_FUNCTIONALITY = {
+    FULL_STOP: CAPS,
     "T": RIGHT_TO_LEFT_OVERRIDE,
     "Y": CHANGE_TAB_WIDTH,
     "U": CLEAR_FILE,
