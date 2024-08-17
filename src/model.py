@@ -3,7 +3,6 @@ from constants import *
 class ImvimModel():
     def __init__(self) -> None:
         self.player_text = []
-        self.text_length = []
         self.cursor_coords = (0,0)
         self.level = 0
         self.goal_text = GOAL_ZERO
@@ -33,23 +32,20 @@ class ImvimModel():
             self.player_text[row_num] = new_text
     
     def insert_char_at_cursor(self, char: str) -> None:
-        #space is a string at this point
-        print(self.player_text)
-        col, row = self.cursor_coords
-        if len(self.player_text) <= row:
-            self.player_text.append([])
-            #self.player_text[row].append(char)
-        elif col >= self.max_line_width:
-            row = row + 1
-            self.cursor_coords = (1, row)
-            self.player_text.append([])
-            #self.player_text[row].append(char)
-            return
-        #else:
-            #self.player_text[row] = self.player_text[row][:col] + char + self.player_text[row][col:]
-        self.player_text[row].append(str(char))
-        col += 1
-        self.move_cursor(0, len(char))
+        if self.is_printable(char):
+            col, row = self.cursor_coords
+            if len(self.player_text) <= row:
+                self.player_text.append([])
+            elif col >= self.max_line_width:
+                row = row + 1
+                self.cursor_coords = (1, row)
+                self.player_text.append([])
+                return
+            #else:
+                #self.player_text[row] = self.player_text[row][:col] + char + self.player_text[row][col:]
+            self.player_text[row].append(char)
+            col += 1
+            self.move_cursor(0, len(char))
         #self.move_cursor(len(char), 0)
 
 
@@ -118,3 +114,7 @@ class ImvimModel():
     def get_current_line_length(self):
         # Return length of current line
         return len(self.get_current_line())
+    
+    # Returns true if the char is printable, false if not
+    def is_printable(self, char: str) -> bool:
+        return (char in PRINTABLE)

@@ -24,7 +24,11 @@ def handle_spacebar(key_pressed, model):
     Write "space" if the input is a spacebar
     """
     if key_pressed == "space":
-        model.insert_char_at_cursor("space")
+        model.insert_char_at_cursor("s")
+        model.insert_char_at_cursor("p")
+        model.insert_char_at_cursor("a")
+        model.insert_char_at_cursor("c")
+        model.insert_char_at_cursor("e")
         return True
     return False
 
@@ -34,12 +38,24 @@ def regular_char_to_char(key_pressed, model):
         return True
     return False
 
-def caeser_cipher(input, model, other):
+def handle_tab(key_pressed, model):
     """
-    caesar cipher shift input if it is a letter
-    ignore other characters.
+    Write "space" if the input is a spacebar
     """
-    pass
+    if key_pressed in SYM_TABS:
+        model.insert_char_at_cursor(TAB_SYM)
+        return True
+    return False
+
+def handle_enter(key_pressed, model):
+    """
+    If input is enter/return/grave, create a new row
+    """
+    # if key_pressed in SYM_ENTERS:
+    #   will not be inserting a new char, will insert a new row/line!!!
+    #     model.insert_char_at_cursor(ENTER)
+    #     return True
+    # return False
 
 def convert_space(input, model, other):
     """
@@ -52,3 +68,4 @@ def convert_space(input, model, other):
     this shouldnt immediately turn back into a " ")
     """
     pass
+    #check if the last letter pressed is e, then check the previous 4 key presses! (not the ones stored in user_text, the ones stored in history)
