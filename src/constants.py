@@ -110,14 +110,6 @@ MOVE_DELTAS = {
     LEFT: (0, -5),
 }
 
-# Mapping of the arrows to chars
-ARROW_TO_CHAR = {
-    "Up": UP,
-    "Down": DOWN,
-    "Left": LEFT,
-    "Right": RIGHT,
-}
-
 REGULAR_CHAR_TO_CHAR = {
     # Numbers to symbols
     "0": AMPERSAND_SYM,
@@ -215,6 +207,12 @@ REGULAR_CHAR_TO_CHAR = {
     "H": SEMICOLON_SYM,
     "j": CLOSE_PARENTHESIS_SYM,
     "J": CLOSE_BRACKET_SYM,
+
+    # arrows to chars
+    "Up": UP,
+    "Down": DOWN,
+    "Left": LEFT,
+    "Right": RIGHT
 }
 
 
