@@ -50,6 +50,11 @@ class TextGrid(tk.Canvas):
         y = self.cell_height
         self.create_line(x1,y,x2,y, fill="#555555", width=2)
 
+    def redraw_heading(self, level) -> None:
+        self.create_rectangle(0,0, self.width, self.cell_height, fill="#333333")
+        line = self.name + "_level_" + str(level) + ".txt"
+        self.print_line(line, 0)
+
     def print_char(self, char: str, x: int, y: int, color: str) -> None:
         if self.split_point == (x-TEXT_OFFSET, y-1):
             self.text_colour = "white"
@@ -151,9 +156,9 @@ class KeyPressFrame(tk.Canvas):
 
 
 class ImvimView:
-    def display_view(self, root, model):
-        self.userTextFrame.draw(model.get_player_text(), model.get_level(), model.get_cursor_coords())
-        self.taskFrame.draw(model.get_goal_text(), model.get_level())
+    def display_view(self, root):
+        """self.userTextFrame.draw(model.get_player_text(), model.get_level(), model.get_cursor_coords())
+        self.taskFrame.draw(model.get_goal_text(), model.get_level())"""
         root.mainloop()
 
     def create_view(self, root):
@@ -191,11 +196,11 @@ class ImvimView:
         print(user_text)
         self.userTextFrame.redraw(user_text, prior_cursor=prior_cursor, cursor_pos=cursor_pos, split_point=split_point)
 
-        goal_text = model.get_goal_text()
-        self.taskFrame.redraw(goal_text, split_point=split_point)
+        #goal_text = model.get_goal_text()
+        #self.taskFrame.redraw(goal_text, split_point=split_point)
         self.keyPressFrame.redraw(model.get_historical_keypress())
 
-    def initial_redraw(self):
+    """def initial_redraw(self):
         # redraws initially
         cursor_pos = (20, 1)
         split_point = (10,1)
@@ -205,7 +210,14 @@ class ImvimView:
         goal_text = ["This is an example of", "what the goal output could be."]
         self.taskFrame.redraw(goal_text, split_point=split_point)
 
-        self.keyPressFrame.init_redraw()
+        self.keyPressFrame.init_redraw()"""
+
+    def draw_new_level(self, model):
+        level = model.get_level()
+        user_text = model.get_player_text()
+        task_text = model.get_goal_text()
+        self.taskFrame.draw(task_text, level)
+        self.userTextFrame.draw(user_text, level, model.get_cursor_coords())
 
 
 '''def main():

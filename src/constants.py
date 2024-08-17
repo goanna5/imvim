@@ -1,14 +1,18 @@
-MAX_LEVEL = 0
+MAX_LEVEL = 1
 
 GOAL_ZERO = ["Hello, World!"]
 
-GOAL_TEXTS = [GOAL_ZERO]
+GOAL_ONE = ["We are now on level one."]
+
+GOAL_TEXTS = [GOAL_ZERO, GOAL_ONE]
 
 START_ZERO = ["Here is some text.",
               "This is a sentence.",
               "Sample text."]
 
-START_TEXTS = [START_ZERO]
+START_ONE = ["This is the initial text for", "level one."]
+
+START_TEXTS = [START_ZERO, START_ONE]
 
 KEY_PRESS_FRAME_HEIGHT = 150
 TEXT_OFFSET = 4

@@ -87,9 +87,9 @@ class ImvimModel():
             # if we are on the final level, do nothing
             return
         # reset all data stuff
-        self.player_text = []
         self.cursor_coords = (0,0)
         self.level += 1
+        self.player_text = START_TEXTS[self.level]
         self.goal_text = GOAL_TEXTS[self.level]
 
     def set_historical_keypress(self, keypressed):

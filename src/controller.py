@@ -13,12 +13,13 @@ class ImvimController:
 
         self._imvimView.create_view(master)
         # TEST TEST TEST
-        self._imvimView.initial_redraw()
+        #self._imvimView.initial_redraw()
+        self._imvimView.draw_new_level(self._imvimModel)
 
         # handle key presses 
         master.bind('<KeyPress>', self.handle_keypress)
         ### redraw gui ### <- maybe a view method, may need to make one in controller
-        self._imvimView.display_view(master, self._imvimModel)
+        self._imvimView.display_view(master)
 
     def handle_keypress(self, event: tk.Event) -> None:
         # method to handle all the different functionality from pressing keys
@@ -44,6 +45,16 @@ class ImvimController:
         print(self._imvimModel.get_historical_keypress())
 
         
+        # DETERMINE IF LEVEL IS BEATEN
+        if self._imvimModel.is_level_beaten() or key_pressed == "BackSpace":
+            # level has been beaten
+
+            # TEST TEST 
+            """ TEST TEST """
+            self._imvimModel.start_next_level()
+            self._imvimView.draw_new_level(self._imvimModel)
+            print("new level started")
+            #self._imvimModel.player_text = ["I win the level teehee"]
 
         ### redraw gui ### <- maybe a view method, may need to make one in controller
         self._imvimView.redraw(self._imvimModel, prior_cursor)
