@@ -86,10 +86,12 @@ class TextGrid(tk.Canvas):
         self.print_line(text, row_num)
 
 
-    def redraw(self, text, cursor_pos=None, split_point=None) -> None:
+    def redraw(self, text, prior_cursor=None, cursor_pos=None, split_point=None) -> None:
         self.split_point = split_point
         if cursor_pos:
             # draw cursor
+            if prior_cursor:
+                self.redraw_line(prior_cursor[1]+1, text[prior_cursor[1]])
             self.redraw_line(cursor_pos[1]+1, text[cursor_pos[1]])
             self.draw_cursor(cursor_pos)
 
@@ -156,13 +158,13 @@ class ImvimView:
         self.taskFrame.pack(side=RIGHT, fill=BOTH)
         self.keyPressFrame.pack(side=BOTTOM, fill=BOTH)
     
-    def redraw(self, model):
+    def redraw(self, model, prior_cursor):
         # model is a ImvimModel
         cursor_pos = model.get_cursor_coords()
         split_point = model.get_last_correct_char()
         #split_point = (0,0)
         user_text = model.get_player_text()
-        self.userTextFrame.redraw(user_text, cursor_pos=cursor_pos, split_point=split_point)
+        self.userTextFrame.redraw(user_text, prior_cursor=prior_cursor, cursor_pos=cursor_pos, split_point=split_point)
 
         goal_text = model.get_goal_text()
         self.taskFrame.redraw(goal_text, split_point=split_point)

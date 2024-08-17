@@ -23,6 +23,7 @@ class ImvimController:
     def handle_keypress(self, event: tk.Event) -> None:
         # method to handle all the different functionality from pressing keys
         # references methods in the view
+        prior_cursor = self._imvimModel.get_cursor_coords()
         key_pressed = event.keysym
         print(key_pressed)
 
@@ -41,7 +42,7 @@ class ImvimController:
         
 
         ### redraw gui ### <- maybe a view method, may need to make one in controller
-        self._imvimView.redraw(self._imvimModel)
+        self._imvimView.redraw(self._imvimModel, prior_cursor)
 
     # updates game state/ position of the cursor although this is done indirectly through modfiying methods
     
