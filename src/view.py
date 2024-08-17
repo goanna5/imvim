@@ -164,6 +164,8 @@ class ImvimView:
         split_point = model.get_last_correct_char()
         #split_point = (0,0)
         user_text = model.get_player_text()
+        print("Player text: ")
+        print(user_text)
         self.userTextFrame.redraw(user_text, prior_cursor=prior_cursor, cursor_pos=cursor_pos, split_point=split_point)
 
         goal_text = model.get_goal_text()
