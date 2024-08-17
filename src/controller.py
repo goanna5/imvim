@@ -46,7 +46,7 @@ class ImvimController:
 
         
         # DETERMINE IF LEVEL IS BEATEN
-        if self._imvimModel.is_level_beaten() or key_pressed == "BackSpace":
+        if self._imvimModel.is_level_beaten():
             # level has been beaten
 
             # TEST TEST 
