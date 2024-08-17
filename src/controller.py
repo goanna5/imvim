@@ -26,10 +26,13 @@ class ImvimController:
         key_pressed = event.keysym
         print(key_pressed)
 
-        handle_back_and_del(key_pressed, ImvimModel)
+        handle_back_and_del(key_pressed, self._imvimModel)
 
         # pass keys pressed to the thing displaying on the gui
         #self._imvimView.display_keypress()
+
+        # TEST
+        self._imvimModel.insert_char_at_cursor(event.char)
 
         ### redraw gui ### <- maybe a view method, may need to make one in controller
         self._imvimView.redraw(self._imvimModel)

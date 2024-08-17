@@ -7,6 +7,7 @@ class ImvimModel():
         self.level = 0
         self.goal_text = GOAL_ZERO
         self.historical_keypress = []
+        self.max_line_width = 60
     
     def get_cursor_coords(self):
         # (col_num, row_num)
@@ -31,7 +32,14 @@ class ImvimModel():
     
     def insert_char_at_cursor(self, char: str) -> None:
         col, row = self.cursor_coords
-        self.player_text[row] = self.player_text[row][:col] + char + self.player_text[row][col:]
+        if len(self.player_text) <= row:
+            self.player_text.append(char)
+        elif col >= self.max_line_width:
+            self.player_text.append(char)
+            self.cursor_coords = (1, row+1)
+            return
+        else:
+            self.player_text[row] = self.player_text[row][:col] + char + self.player_text[row][col:]
         self.move_cursor(0, len(char))
 
 
@@ -44,7 +52,7 @@ class ImvimModel():
         self.cursor_coords = (new_c, new_r)
     
     def delete_current_row(self):
-        self.player_text.remove(self.cursor_coords[0])
+        self.player_text.pop(self.cursor_coords[1])
 
     def is_level_beaten(self):
         return self.player_text == self.goal_text

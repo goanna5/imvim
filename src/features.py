@@ -2,7 +2,6 @@ from constants import *
 
 def handle_back_and_del(key_pressed, model):
     """
-    EASY
     If input is backspace or delete,
     remove entire row
     """
@@ -11,7 +10,6 @@ def handle_back_and_del(key_pressed, model):
 
 def arrow_to_char(key_pressed, model):
     """
-    EASY
     If input is an arrow key, write corresponding letter
     """
     if key_pressed in ARROW_TO_CHAR:
@@ -19,7 +17,6 @@ def arrow_to_char(key_pressed, model):
 
 def char_to_arrow(key_pressed, model):
     """
-    NOT EASY
     If input is "udlr" convert this to a direction
     """
     if key_pressed in [UP, DOWN, LEFT, RIGHT]:
@@ -27,7 +24,6 @@ def char_to_arrow(key_pressed, model):
 
 def handle_spacebar(key_pressed, model):
     """
-    EASY
     Write "space" if the input is a spacebar
     """
     if key_pressed == "space":
