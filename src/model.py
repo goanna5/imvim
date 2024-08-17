@@ -7,7 +7,7 @@ class ImvimModel():
         self.level = 0
         self.goal_text = GOAL_ZERO
         self.historical_keypress = [" "] * 10
-        self.max_line_width = 60
+        self.max_line_width = 10
 
     
     def get_cursor_coords(self):
@@ -35,12 +35,12 @@ class ImvimModel():
         if self.is_printable(char):
             col, row = self.cursor_coords
             if len(self.player_text) <= row:
+                print("what")
                 self.player_text.append([])
             elif col >= self.max_line_width:
                 row = row + 1
                 self.cursor_coords = (1, row)
                 self.player_text.append([])
-                return
             #else:
                 #self.player_text[row] = self.player_text[row][:col] + char + self.player_text[row][col:]
             self.player_text[row].append(char)
@@ -134,6 +134,15 @@ class ImvimModel():
     def delete_space(self) -> None:
         row = self.player_text[self.cursor_coords[1]]
         for i in range(4):
+            #this is in case the space is across two lines
+            if len(row) < 1:
+                self.cursor_coords = (self.end_of_previous_row(self.cursor_coords[1]),self.cursor_coords[1] - 1)
+                row = self.player_text[self.cursor_coords[1]]
+                print(self.cursor_coords[1], row)
             row.pop()
         self.move_cursor(0, 4)
-        
+    
+    #returns the position of the last character of the previous row
+    def end_of_previous_row(self, current_row: int) -> int:
+        if current_row > 0:
+            return len(self.player_text[current_row - 1]) - 1
