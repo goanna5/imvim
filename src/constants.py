@@ -143,10 +143,6 @@ REGULAR_CHAR_TO_CHAR = {
     OPEN_PARENTHESIS: "g",
     CLOSE_PARENTHESIS: "G",
 
-    # symbols to numbers
-    HASH: "0",
-    DOLLAR: "1",
-
     # symbols to symbols
     NOT: GRAVE_SYM,
     MINUS: BAR_SYM,
@@ -236,6 +232,12 @@ SPECIAL_FUNCTIONALITY = {
     "Y": CHANGE_TAB_WIDTH,
     "U": CLEAR_FILE,
     "O": FORCE_QUIT
+}
+
+SYMBOLS_TO_NUMBERS = {
+    # symbols to numbers
+    HASH: "0",
+    DOLLAR: "1",
 }
 
 SYM_ENTERS = [GRAVE, ENTER] #write to enter
