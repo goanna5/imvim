@@ -57,7 +57,7 @@ def handle_enter(key_pressed, model):
     #     return True
     # return False
 
-def convert_space(input, model, other):
+def convert_space(key_pressed, model):
     """
     HARD
     If we have just created the word "space" *ALL LOWERCASE*
@@ -67,5 +67,10 @@ def convert_space(input, model, other):
     (when the user presses the spacebar it prints "space" but
     this shouldnt immediately turn back into a " ")
     """
-    pass
+    if key_pressed in REGULAR_CHAR_TO_CHAR and REGULAR_CHAR_TO_CHAR[key_pressed] == 'e':
+        print("yo")
+        if model.check_space():
+            model.insert_char_at_cursor(" ")
+            return True
+    return False
     #check if the last letter pressed is e, then check the previous 4 key presses! (not the ones stored in user_text, the ones stored in history)
