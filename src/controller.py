@@ -39,7 +39,7 @@ class ImvimController:
         self._imvimModel.insert_char_at_cursor(event.char)
 
         ### redraw gui ### <- maybe a view method, may need to make one in controller
-        self._imvimView.redraw(self._imvimModel)
+        self._imvimVgit iew.redraw(self._imvimModel)
 
     # updates game state/ position of the cursor although this is done indirectly through modfiying methods
     
