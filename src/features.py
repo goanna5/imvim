@@ -37,48 +37,9 @@ def handle_spacebar(key_pressed, model):
         return True
     return False
 
-def char_to_char(key_pressed, model):
-    """
-    Changes char to their respective key binding for non special chars
-    """
-    if key_pressed in REGULAR_CHAR_TO:
-        model.insert_char_at_cursor(REGULAR_CHAR_TO[key_pressed])
-        return True
-    return False
-
-def num_to_symbols(key_pressed, model):
-    """
-    Changes char to their respective key binding for non special chars
-    """
-    if key_pressed in NUMBERS_TO_SYM:
-        model.insert_char_at_cursor(NUMBERS_TO_SYM[key_pressed])
-        return True
-    return False
-
-def symbols_to_char(key_pressed, model):
-    """
-    Changes char to their respective key binding for non special chars
-    """
-    if key_pressed in SYMBOLS_TO_CHAR:
-        model.insert_char_at_cursor(SYMBOLS_TO_CHAR[key_pressed])
-        return True
-    return False
-
-def symbols_to_num(key_pressed, model):
-    """
-    Changes char to their respective key binding for non special chars
-    """
-    if key_pressed in SYMBOLS_TO_NUM:
-        model.insert_char_at_cursor(SYMBOLS_TO_NUM[key_pressed])
-        return True
-    return False
-
-def symbols_to_sym(key_pressed, model):
-    """
-    Changes char to their respective key binding for non special chars
-    """
-    if key_pressed in SYMBOLS_TO_SYM:
-        model.insert_char_at_cursor(SYMBOLS_TO_SYM[key_pressed])
+def regular_char_to_char(key_pressed, model):
+    if key_pressed in REGULAR_CHAR_TO_CHAR:
+        model.insert_char_at_cursor(REGULAR_CHAR_TO_CHAR[key_pressed])
         return True
     return False
 
