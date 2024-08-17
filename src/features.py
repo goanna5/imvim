@@ -55,6 +55,33 @@ def num_to_symbols(key_pressed, model):
         return True
     return False
 
+def symbols_to_char(key_pressed, model):
+    """
+    Changes char to their respective key binding for non special chars
+    """
+    if key_pressed in SYMBOLS_TO_CHAR:
+        model.insert_char_at_cursor(SYMBOLS_TO_CHAR[key_pressed])
+        return True
+    return False
+
+def symbols_to_num(key_pressed, model):
+    """
+    Changes char to their respective key binding for non special chars
+    """
+    if key_pressed in SYMBOLS_TO_NUM:
+        model.insert_char_at_cursor(SYMBOLS_TO_NUM[key_pressed])
+        return True
+    return False
+
+def symbols_to_sym(key_pressed, model):
+    """
+    Changes char to their respective key binding for non special chars
+    """
+    if key_pressed in SYMBOLS_TO_SYM:
+        model.insert_char_at_cursor(SYMBOLS_TO_SYM[key_pressed])
+        return True
+    return False
+
 def caeser_cipher(input, model, other):
     """
     caesar cipher shift input if it is a letter

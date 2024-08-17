@@ -19,28 +19,50 @@ DOWN = 'd'
 LEFT = 'l'
 RIGHT = 'r'
 
-MOVE_DELTAS = {
-    UP: (-2, 0),
-    DOWN: (3, 0),
-    RIGHT: (0, 7),
-    LEFT: (0, -5),
-}
-
-ARROW_TO_CHAR = {
-    "Up": UP,
-    "Down": DOWN,
-    "Left": LEFT,
-    "Right": RIGHT,
-}
-
-
 # Costants related to tab caps enter
 CAPS = "Caps_Lock"
 TAB = "Tab"
 ENTER = "Return"
 
-# Constants related to symbols
-'''
+# Constants related to symbols (symbol representation)
+GRAVE_SYM = "`"
+NOT_SYM = "~"
+EXCLAMATION_SYM = "!"
+AT_SYM = "@"
+HASH_SYM = "#"
+DOLLAR_SYM = "$"
+PERCENT_SYM = "%"
+CARET_SYM = "^"
+AMPERSAND_SYM = "&"
+ASTERISK_SYM = "*"
+OPEN_PARENTHESIS_SYM = "("
+CLOSE_PARENTHESIS_SYM = ")"
+MINUS_SYM = "-"
+UNDERSCORE_SYM = "_"
+PLUS_SYM = "+"
+EQUALS_SYM = "="
+OPEN_BRACKET_SYM = "["
+OPEN_BRACE_SYM = "{"
+CLOSE_BRACKET_SYM = "]"
+CLOSE_BRACE_SYM = "}"
+BAR_SYM = "|"
+BACKSLASH_SYM = "\\"
+COLON_SYM = ":"
+SEMICOLON_SYM = ";"
+DOUBLE_QUOTES_SYM = "\""
+SINGLE_QUOTE_SYM = "\'"
+COMMA_SYM = ","
+LESS_THAN_SYM = "<"
+FULL_STOP_SYM = "."
+GREATER_THAN_SYM = ">"
+SLASH_SYM = "/"
+QUESTION_MARK_SYM = "?"
+POWER_SYM = "**"
+EQUAL_TO_SYM = "=="
+LOGICAL_AND_SYM = "&&"
+LOGICAL_OR_SYM = "||"
+
+# Constants related to symbols (text representation)
 GRAVE = "grave"
 NOT = "asciitilde"
 EXCLAMATION = "exclam"
@@ -73,71 +95,41 @@ FULL_STOP = "period"
 GREATER_THAN = "greater"
 SLASH = "slash"
 QUESTION_MARK = "question"
-'''
 
-GRAVE = "`",
-NOT = "~",
-EXCLAMATION = "!",
-AT = "@",
-HASH = "#",
-DOLLAR = "$",
-PERCENT = "%",
-CARET = "^",
-AMPERSAND = "&",
-ASTERISK = "*",
-OPEN_PARENTHESIS = "(",
-CLOSE_PARENTHESIS = ")",
-MINUS = "-",
-UNDERSCORE = "_",
-PLUS = "+",
-EQUALS = "=",
-OPEN_BRACKET = "[",
-OPEN_BRACE = "{",
-CLOSE_BRACKET = "]",
-CLOSE_BRACE = "}",
-BAR = "|",
-BACKSLASH = "\\",
-COLON = ":",
-SEMICOLON = ";",
-DOUBLE_QUOTES = "\"",
-SINGLE_QUOTE = "\'",
-COMMA = ",",
-LESS_THAN = "<",
-FULL_STOP = ".",
-GREATER_THAN = ">",
-SLASH = "/",
-QUESTION_MARK = "?",
-POWER = "**",
-EQUAL_TO = "==",
-LOGICAL_AND = "&&",
-LOGICAL_OR = "||"
-
-'''
-POWER = "**"
-EQUAL_TO = "=="
-LOGICAL_AND = "&&"
-LOGICAL_OR = "||"
-'''
 # Constants relating to special functionality
 RIGHT_TO_LEFT_OVERRIDE = "U+202E" #this is the unicode character
 CHANGE_TAB_WIDTH = "tab width"
 CLEAR_FILE = "clear"
 FORCE_QUIT = "exit"
 
+# Mapping of directions to coordinates
+MOVE_DELTAS = {
+    UP: (-2, 0),
+    DOWN: (3, 0),
+    RIGHT: (0, 7),
+    LEFT: (0, -5),
+}
 
+# Mapping of the arrows to chars
+ARROW_TO_CHAR = {
+    "Up": UP,
+    "Down": DOWN,
+    "Left": LEFT,
+    "Right": RIGHT,
+}
 
 # Mapping of the numbers to the operators
 NUMBERS_TO_SYM = {
-    "0": AMPERSAND,
-    "1": PLUS,
-    "2": MINUS,
-    "3": ASTERISK,
-    "4": SLASH,
-    "5": EQUALS,
-    "6": PERCENT,
-    "7": POWER,
-    "8": LESS_THAN,
-    "9": GREATER_THAN
+    "0": AMPERSAND_SYM,
+    "1": PLUS_SYM,
+    "2": MINUS_SYM,
+    "3": ASTERISK_SYM,
+    "4": SLASH_SYM,
+    "5": EQUALS_SYM,
+    "6": PERCENT_SYM,
+    "7": POWER_SYM,
+    "8": LESS_THAN_SYM,
+    "9": GREATER_THAN_SYM
 }
 
 # Mapping of the symbols to letters
@@ -161,27 +153,27 @@ SYMBOLS_TO_NUM = {
 # Mapping of the symbols to other symbols
 SYMBOLS_TO_SYM = {
     GRAVE: ENTER,
-    NOT: GRAVE,
-    MINUS: BAR,
-    UNDERSCORE: CARET,
-    PLUS: NOT,
-    EQUALS: EXCLAMATION,
-    OPEN_BRACE: COMMA,
-    OPEN_BRACKET: COLON,
-    CLOSE_BRACE: UNDERSCORE,
-    CLOSE_BRACKET: HASH,
-    BACKSLASH: DOLLAR,
-    BAR: AT,
-    COLON: OPEN_BRACE,
-    SEMICOLON: CLOSE_BRACE,
-    SINGLE_QUOTE: QUESTION_MARK,
-    DOUBLE_QUOTES: BACKSLASH,
+    NOT: GRAVE_SYM,
+    MINUS: BAR_SYM,
+    UNDERSCORE: CARET_SYM,
+    PLUS: NOT_SYM,
+    EQUALS: EXCLAMATION_SYM,
+    OPEN_BRACE: COMMA_SYM,
+    OPEN_BRACKET: COLON_SYM,
+    CLOSE_BRACE: UNDERSCORE_SYM,
+    CLOSE_BRACKET: HASH_SYM,
+    BACKSLASH: DOLLAR_SYM,
+    BAR: AT_SYM,
+    COLON: OPEN_BRACE_SYM,
+    SEMICOLON: CLOSE_BRACE_SYM,
+    SINGLE_QUOTE: QUESTION_MARK_SYM,
+    DOUBLE_QUOTES: BACKSLASH_SYM,
     COMMA: '\n',
-    LESS_THAN: EQUAL_TO,
+    LESS_THAN: EQUAL_TO_SYM,
     FULL_STOP: CAPS,
-    GREATER_THAN: LOGICAL_AND,
+    GREATER_THAN: LOGICAL_AND_SYM,
     SLASH: TAB,
-    QUESTION_MARK: LOGICAL_OR
+    QUESTION_MARK: LOGICAL_OR_SYM
 }
 
 # Mapping of the characters
@@ -279,3 +271,4 @@ REGULAR_CHAR_TO = {
     "m": "m",
     "M": "Z"
 }
+
