@@ -31,7 +31,9 @@ class ImvimModel():
         if row_num < len(self.player_text):
             self.player_text[row_num] = new_text
     
-    def insert_char_at_cursor(self, char: str) -> None:
+    def insert_char_at_cursor(self, char: str, capsLock) -> None:
+        if capsLock:
+            char = char.upper()
         if self.is_printable(char):
             col, row = self.cursor_coords
             if len(self.player_text) <= row:
