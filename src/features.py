@@ -72,7 +72,7 @@ def handle_spacebar(key_pressed, model):
     return False
 
 def regular_char_to_char(key_pressed, model):
-    MIN_LEVEL = 3
+    MIN_LEVEL = 4
 
     if model.get_level() >= MIN_LEVEL:
         if key_pressed in REGULAR_CHAR_TO_CHAR:
@@ -90,7 +90,7 @@ def handle_tab(key_pressed, model):
     """
     Handles tabs
     """
-    MIN_LEVEL = 3
+    MIN_LEVEL = 4
 
     if model.get_level() >= MIN_LEVEL:
         if key_pressed in SYM_TABS:
@@ -102,7 +102,7 @@ def handle_enter(key_pressed, model):
     """
     If input is enter/return/grave, create a new row
     """
-    MIN_LEVEL = 3
+    MIN_LEVEL = 4
 
     if model.get_level() >= MIN_LEVEL:
         if key_pressed in SYM_ENTERS:

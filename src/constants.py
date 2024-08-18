@@ -23,8 +23,8 @@ GOAL_TEXTS = [GOAL_ZERO, GOAL_ONE, GOAL_TWO, GOAL_THREE, GOAL_FOUR]
 START_ZERO = ["================== Welcome to imvim! ==================",
 "",
 "Each level will introduce new uhh... intuitive...",
-"keybinds: your goal is to type the text on the RIGHT",
-"correctly (MAKE SURE YOU DELETE ALL HINTS).",
+"keybinds: your goal is to type the text on the right",
+"correctly on the left (MAKE SURE YOU DELETE ALL HINTS).",
 "",
 "To get started, delete all this text and then",
 "type the text on the right"]
