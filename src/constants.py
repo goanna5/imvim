@@ -18,7 +18,7 @@ GOAL_THREE = ["I built a lot of blocks up",
 
 GOAL_FOUR = ["Soooo super odd keyboard layouts huh",
              "&& this is meant to be (very) intuitive,",
-             "OF COURSE duh"]
+             "*of course* duh, easy as 123."]
 
 GOAL_TEXTS = [GOAL_ZERO, GOAL_ONE, GOAL_TWO, GOAL_THREE, GOAL_FOUR]
 
