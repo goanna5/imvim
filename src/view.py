@@ -123,7 +123,7 @@ class TextGrid(tk.Canvas):
 
     def redraw_num_lines(self, num_lines, text) -> None:
         #Redraw line from first line up to number of lines
-        for i in range(1, num_lines):
+        for i in range(1, num_lines + 1):
             self.redraw_line(i, text)
         
 
