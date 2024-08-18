@@ -130,7 +130,7 @@ class ImvimModel():
         self.move_cursor(0, 0)
 
     def is_level_beaten(self):
-        # return not self.level
+        #return (self.level == 0 or self.level == 1 or self.level == 2 or self.level == 3)
         return self.player_text == self.goal_text
     
     """def get_last_correct_char(self):
@@ -200,13 +200,18 @@ class ImvimModel():
         return (char in PRINTABLE)
     
     #checks if the previous historical keypresses are 'c', 'a', 'p', 's'
-    def check_space(self) -> bool:
+    def check_space(self, cursed) -> bool:
         if len(self.historical_keypress) >= 5:
-            if (REGULAR_CHAR_TO_CHAR[self.historical_keypress[-1]] == 'c' 
+            if (not cursed and self.historical_keypress[-1] == 'c' 
+                and self.historical_keypress[-2]== 'a' 
+                and self.historical_keypress[-3] == 'p' 
+                and self.historical_keypress[-4] == 's'):
+                return True
+            if (cursed and REGULAR_CHAR_TO_CHAR[self.historical_keypress[-1]] == 'c' 
                 and REGULAR_CHAR_TO_CHAR[self.historical_keypress[-2]] == 'a' 
                 and REGULAR_CHAR_TO_CHAR[self.historical_keypress[-3]] == 'p' 
                 and REGULAR_CHAR_TO_CHAR[self.historical_keypress[-4]] == 's'):
-                return True 
+                return True
         return False
     
     #remove the spac from the terminal

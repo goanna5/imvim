@@ -7,12 +7,15 @@ GOAL_ONE = ["Level 1",
             "is really intuitive", 
             "to navigate lol"]
 
-GOAL_TWO = ["Bit of text up here",
+GOAL_TWO = ["*Different challenge:",
+            "Fix the text on the left to look like this:",
+            "",
+            "Bit of text up here",
             "bit down here",
             "3 lines?",
             "or 4..."]
 
-GOAL_THREE = ["I built a lot of blocks up",
+GOAL_THREE = ["I built a lot of blocks up from earth",
               "to the maximum build height: 320",
               "(minecraft core!!)"]
 
@@ -28,21 +31,20 @@ START_ZERO = ["================== Welcome to imvim! ==================",
 "keybinds: your goal is to type the text on the right ",
 "correctly on the left (MAKE SURE YOU DELETE ALL HINTS). ",
 "",
+"Hints are your friend, **READ THEM** ",
+"",
 "To get started, delete all this text and then ",
 "type the text on the right"]
 
 START_ONE = ["(delete these lines) Hint: We made moving around *much* ",
              "more intuitive. Why does one press l to go right in vim..."]
 
-START_TWO = ["Hint: moving around has been changed for maximum ", 
-             "moving around efficiency!! Who moves by 1 space anyways... ",
-             "",
-             "some ",
-             "more ",
-             "lines "]
+START_TWO = ["Bit of text ip here",
+            "bit down her",
+            "3 lines?",
+            "or 9..."]
 
-START_THREE = ["Hint: why so much space?? I need everything *stack*ed ",
-                "together"]
+START_THREE = ["Hint: for maximum efficiency you can move super quick :D"]
 
 START_FOUR = ["Hint: think about what kinda keyboard layouts there are ",
                "- qwerty SUCKS. Directions are always constant dw ",
