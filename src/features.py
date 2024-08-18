@@ -15,6 +15,16 @@ def handle_back_and_del(key_pressed, model) -> bool:
             print("something's wrong - delete row should always be active")
     return False
 
+def arrow_to_char(key_pressed, model):
+    """
+    If input is an arrow key, write corresponding letter
+    """
+    if key_pressed in ARROW_TO_CHAR:
+        model.insert_char_at_cursor(ARROW_TO_CHAR[key_pressed])
+        return True
+    return False
+
+
 def char_to_arrow(key_pressed, model):
     """
     If input is "udlr" convert this to a direction
@@ -42,7 +52,7 @@ def handle_spacebar(key_pressed, model):
     """
     Write "space" if the input is a spacebar
     """
-    MIN_LEVEL = 1
+    MIN_LEVEL = 3
 
     if key_pressed == "space":
         if model.get_level() >= MIN_LEVEL:
@@ -57,7 +67,7 @@ def handle_spacebar(key_pressed, model):
     return False
 
 def regular_char_to_char(key_pressed, model):
-    MIN_LEVEL = 1
+    MIN_LEVEL = 3
 
     if model.get_level() >= MIN_LEVEL:
         if key_pressed in REGULAR_CHAR_TO_CHAR:
@@ -73,9 +83,9 @@ def regular_char_to_char(key_pressed, model):
 
 def handle_tab(key_pressed, model):
     """
-    Write "space" if the input is a spacebar
+    Handles tabs
     """
-    MIN_LEVEL = 1
+    MIN_LEVEL = 3
 
     if model.get_level() >= MIN_LEVEL:
         if key_pressed in SYM_TABS:
@@ -87,7 +97,7 @@ def handle_enter(key_pressed, model):
     """
     If input is enter/return/grave, create a new row
     """
-    MIN_LEVEL = 1
+    MIN_LEVEL = 3
 
     if model.get_level() >= MIN_LEVEL:
         if key_pressed in SYM_ENTERS:
@@ -120,6 +130,16 @@ def handle_force_quit(key_pressed, window):
 #     """
 #     return key_pressed == FULL_STOP
         
+def handle_clear_file(key_pressed, model, view):
+    """
+    If input is U, clear file
+    """
+    if key_pressed == "U":
+        num_lines_to_clear = len(model.get_player_text())
+        model.reset_player_text()
+        view.redraw_section(num_lines_to_clear, "")
+        return True
+    return False
 
 
 def handle_numbers(key_pressed, model):
@@ -144,7 +164,7 @@ def convert_space(key_pressed, model):
     (when the user presses the spacebar it prints "space" but
     this shouldnt immediately turn back into a " ")
     """
-    MIN_LEVEL = 1
+    MIN_LEVEL = 3
     
     if model.get_level() >= MIN_LEVEL:
         if key_pressed in REGULAR_CHAR_TO_CHAR and REGULAR_CHAR_TO_CHAR[key_pressed] == 'e':

@@ -121,6 +121,12 @@ class TextGrid(tk.Canvas):
                 self.redraw_line(cursor_pos[1]+1, "")
             self.draw_cursor(cursor_pos)
 
+    def redraw_num_lines(self, num_lines, text) -> None:
+        #Redraw line from first line up to number of lines
+        for i in range(1, num_lines):
+            self.redraw_line(i, text)
+        
+
 
 
 class KeyPressFrame(tk.Canvas):
@@ -209,6 +215,9 @@ class ImvimView:
         #goal_text = model.get_goal_text()
         #self.taskFrame.redraw(goal_text, split_point=split_point)
         self.keyPressFrame.redraw(model.get_historical_keypress())
+
+    def redraw_section(self, num_lines, text):
+        self.userTextFrame.redraw_num_lines(num_lines, text)
 
     """def initial_redraw(self):
         # redraws initially
