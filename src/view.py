@@ -56,9 +56,9 @@ class TextGrid(tk.Canvas):
         self.print_line(line, 0)
 
     def print_char(self, char: str, x: int, y: int, color: str) -> None:
-        if self.split_point == (x-TEXT_OFFSET, y-1):
+        """if self.split_point == (x-TEXT_OFFSET, y-1):
             self.text_colour = "white"
-            color = "white"
+            color = "white"""
         midpoint = self.get_pixel_coords(y, x)
         self.create_text(midpoint, text=char, anchor=CENTER, fill=color, font="Consolas")
 
@@ -70,13 +70,12 @@ class TextGrid(tk.Canvas):
         for i, line in enumerate(text):
             self.print_line(line, i+1)
 
-    def draw(self, text, level, split_point=None, cursor_pos=None) -> None:
+    def draw(self, text, level, cursor_pos=None) -> None:
         self.create_rectangle(0, 0, self.width, self.height, fill=self.bg_colour)
         self.print_line_nums()
-        self.split_point = split_point
-        self.text_colour = "white"
+        # self.split_point = split_point
+        #self.text_colour = "white"
         self.draw_heading(level)
-        self.text_colour = "lime"
         self.print_text(text)
         if cursor_pos:
             # draw cursor
@@ -101,8 +100,8 @@ class TextGrid(tk.Canvas):
         self.draw_cursor(cursor_pos)
 
 
-    def redraw(self, text, prior_cursor=None, cursor_pos=None, split_point=None) -> None:
-        self.split_point = split_point
+    def redraw(self, text, prior_cursor=None, cursor_pos=None) -> None:
+        # self.split_point = split_point
         if cursor_pos != None:
             # remove cursor from previous position
             if prior_cursor != None:
@@ -205,12 +204,12 @@ class ImvimView:
     def redraw(self, model, prior_cursor):
         # model is a ImvimModel
         cursor_pos = model.get_cursor_coords()
-        split_point = model.get_last_correct_char()
+        #split_point = model.get_last_correct_char()
         #split_point = (0,0)
         user_text = model.get_player_text()
         print("Player text: ")
         print(user_text)
-        self.userTextFrame.redraw(user_text, prior_cursor=prior_cursor, cursor_pos=cursor_pos, split_point=split_point)
+        self.userTextFrame.redraw(user_text, prior_cursor=prior_cursor, cursor_pos=cursor_pos)
 
         #goal_text = model.get_goal_text()
         #self.taskFrame.redraw(goal_text, split_point=split_point)
@@ -235,7 +234,9 @@ class ImvimView:
         level = model.get_level()
         user_text = model.get_player_text()
         task_text = model.get_goal_text()
-        split_point = model.get_last_correct_char()
-        self.taskFrame.draw(task_text, level, split_point)
-        self.userTextFrame.draw(user_text, level, split_point, model.get_cursor_coords())
+        # split_point = model.get_last_correct_char()
+        # self.taskFrame.draw(task_text, level, split_point)
+        # self.userTextFrame.draw(user_text, level, split_point, model.get_cursor_coords())
+        self.taskFrame.draw(task_text, level)
+        self.userTextFrame.draw(user_text, level, model.get_cursor_coords())
         self.keyPressFrame.init_redraw()

@@ -19,6 +19,7 @@ def arrow_to_char(key_pressed, model):
     """
     If input is an arrow key, write corresponding letter
     """
+    return
     if key_pressed in ARROW_TO_CHAR:
         model.insert_char_at_cursor(ARROW_TO_CHAR[key_pressed])
         return True

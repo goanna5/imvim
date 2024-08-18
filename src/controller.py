@@ -42,7 +42,7 @@ class ImvimController:
             # if none of the keys are detcted, insert char (will need to change later when we add more stuff)
             self._imvimModel.insert_char_at_cursor(event.char)
         
-        self._imvimModel.update_last_correct_char()
+        # self._imvimModel.update_last_correct_char()
         #TESTING
         #print("player text: " + str(self._imvimModel.get_player_text()))
 
@@ -64,6 +64,7 @@ class ImvimController:
                 self._imvimModel.set_historical_keypress(" ")
 
             print("new level started")
+            #print(self._imvimModel.get_last_correct_char())
             #self._imvimModel.player_text = ["I win the level teehee"]
 
         ### redraw gui ### <- maybe a view method, may need to make one in controller
