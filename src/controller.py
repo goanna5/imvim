@@ -68,7 +68,7 @@ class ImvimController:
         if self._imvimModel.is_level_beaten():
             # level has been beaten
             level_popup(self._imvimModel)
-            self._imvimView.draw_success_message()
+            self._imvimView.draw_success_message(self._imvimModel.get_level() == MAX_LEVEL)
 
 
         ### redraw gui ### <- maybe a view method, may need to make one in controller
