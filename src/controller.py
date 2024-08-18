@@ -35,7 +35,6 @@ class ImvimController:
             and not handle_enter(key_pressed, self._imvimModel) and not handle_numbers(key_pressed, self._imvimModel) \
             and not convert_space(key_pressed, self._imvimModel) and not regular_char_to_char(key_pressed, self._imvimModel) \
             and not regular_char_to_char(key_pressed, self._imvimModel) and not handle_force_quit(key_pressed, self._imvimWindow):
-            and not convert_space(key_pressed, self._imvimModel) and not regular_char_to_char(key_pressed, self._imvimModel):
             # if none of the keys are detcted, insert char (will need to change later when we add more stuff)
             self._imvimModel.insert_char_at_cursor(event.char)
         
@@ -64,6 +63,11 @@ class ImvimController:
             #self._imvimModel.player_text = ["I win the level teehee"]
 
         ### redraw gui ### <- maybe a view method, may need to make one in controller
+        if self._imvimModel.need_to_redraw:
+            # redraw the entire text area
+            # print("redrawing whole thing")
+            # self._imvimView.userTextFrame.redraw_text_area(self._imvimModel.get_cursor_coords()[1], self._imvimModel.get_player_text())
+            self._imvimView.userTextFrame.redraw_text_area(0, self._imvimModel.get_player_text(), self._imvimModel.get_cursor_coords())
         self._imvimView.redraw(self._imvimModel, prior_cursor)
 
     # updates game state/ position of the cursor although this is done indirectly through modfiying methods

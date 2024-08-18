@@ -2,13 +2,14 @@ from constants import *
 
 class ImvimModel():
     def __init__(self) -> None:
-        self.player_text = []
         self.cursor_coords = (0,0)
         self.level = 0
+        self.player_text = START_ZERO
         self.goal_text = GOAL_ZERO
         self.historical_keypress = [" "] * 10
         self.max_line_width = 60
         self.numbers_entered = 0 #track how many binary digits have been entered
+        self.need_to_redraw = False
 
     def get_cursor_coords(self):
         # (col_num, row_num)
@@ -38,7 +39,7 @@ class ImvimModel():
                 self.player_text.append("")
             elif col >= self.max_line_width:
                 row = row + 1
-                self.cursor_coords = (1, row)
+                self.cursor_coords = (0, row)
                 self.player_text.append("")
             #else:
                 
@@ -67,13 +68,21 @@ class ImvimModel():
     
     # deletes contents of the current row (row array is still in the overall array)
     def delete_current_row(self):
+        # true if we need to redraw the whole thing
         if self.player_text != []:
             """row = self.player_text[self.cursor_coords[1]]
             for i in range(len(row)):
                 row.pop()"""
-            self.player_text[self.cursor_coords[1]] = ""
+            if self.player_text[self.cursor_coords[1]]:
+                self.player_text[self.cursor_coords[1]] = ""
+            else:
+                self.player_text.pop(self.cursor_coords[1])
+                self.move_cursor(-1, self.max_line_width)
+                self.need_to_redraw = True
+                return
         # self.move_cursor(0, len(row))
         self.move_cursor(0, 0)
+        self.need_to_redraw = False
 
     def is_level_beaten(self):
         return self.player_text == self.goal_text
