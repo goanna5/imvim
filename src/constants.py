@@ -8,10 +8,12 @@ GOAL_ONE = ["Level 1",
             "to navigate lol"]
 
 GOAL_TWO = ["Bit of text up here",
-            "bit down here"]
+            "bit down here",
+            "3 lines?",
+            "or 4..."]
 
 GOAL_THREE = ["I built a lot of blocks up",
-              "to the maximum build height",
+              "to the maximum build height: 320",
               "(minecraft core!!)"]
 
 GOAL_FOUR = ["Soooo super odd keyboard layouts huh",
