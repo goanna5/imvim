@@ -7,9 +7,16 @@ class ImvimModel():
         self.player_text = START_ZERO
         self.goal_text = GOAL_ZERO
         self.historical_keypress = [" "] * 10
-        self.max_line_width = 60
+        self.max_line_width = 20
         self.numbers_entered = 0 #track how many binary digits have been entered
         self.need_to_redraw = False
+        self.capsLock = False
+
+    def get_caps(self):
+        return self.capsLock
+    
+    def set_caps(self, caps: bool):
+        self.capsLock = caps
 
     def get_cursor_coords(self):
         # (col_num, row_num)
@@ -32,7 +39,9 @@ class ImvimModel():
         if row_num < len(self.player_text):
             self.player_text[row_num] = new_text
     
-    def insert_char_at_cursor(self, char: str) -> None:
+    def insert_char_at_cursor(self, char: str, capsLock: bool) -> None:
+        if capsLock:
+            char = char.upper()
         if self.is_printable(char):
             col, row = self.cursor_coords
             if len(self.player_text) <= row:
@@ -40,9 +49,12 @@ class ImvimModel():
             elif col >= self.max_line_width:
                 row = row + 1
                 self.cursor_coords = (0, row)
-                self.player_text.append("")
-            #else:
+                col, row = self.cursor_coords
+                #if cursor now on row that doesn't exist, add new row
+                if row > len(self.player_text):
+                    self.player_text.append("")
                 
+
             self.player_text[row] = self.player_text[row][:col] + char + self.player_text[row][col:self.max_line_width - 1]
             #self.player_text[row].append(char)
             col += 1
@@ -153,14 +165,18 @@ class ImvimModel():
     def delete_space(self) -> None:
         # currently broken
         # NEED TO CHANGE - CURRENTLY FOR THE ONE-CHARACTER-PER-ENTRY THINGO
-        row = self.player_text[self.cursor_coords[1]]
+        col, row = self.cursor_coords
         for i in range(4):
+            print("cords", col, row)
             #this is in case the space is across two lines
-            if len(row) < 1:
+            if len(self.player_text[row]) < 1 or col < 0:
                 self.cursor_coords = (self.end_of_previous_row(self.cursor_coords[1]),self.cursor_coords[1] - 1)
-                row = self.player_text[self.cursor_coords[1]]
-            row.pop()
-        self.move_cursor(0, 4)
+                col, row = self.cursor_coords
+            print("row?",(self.player_text[row][(col):self.max_line_width - 1]))
+            self.player_text[row] = self.player_text[row][:(col - 1)] + self.player_text[row][(col):self.max_line_width - 1]
+            self.cursor_coords = (self.cursor_coords[0] - 1,self.cursor_coords[1])
+            col, row = self.cursor_coords
+        #self.move_cursor(0, 4)
     
     #returns the position of the last character of the previous row
     def end_of_previous_row(self, current_row: int) -> int:
