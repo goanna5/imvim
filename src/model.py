@@ -81,7 +81,7 @@ class ImvimModel():
     # deletes contents of the current row (row array is still in the overall array)
     def delete_current_row(self):
         # true if we need to redraw the whole thing
-        if self.player_text != []:
+        if self.player_text and self.player_text != [""]:
             """row = self.player_text[self.cursor_coords[1]]
             for i in range(len(row)):
                 row.pop()"""
