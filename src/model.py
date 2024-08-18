@@ -10,7 +10,7 @@ class ImvimModel():
         self.max_line_width = 60
         self.numbers_entered = 0 #track how many binary digits have been entered
         self.need_to_redraw = False
-        self.last_correct_char = (0,0)
+        # self.last_correct_char = (0,0)
         self.pop_up = False
         #self.capsLock = False
 
@@ -134,13 +134,15 @@ class ImvimModel():
         # return not self.level
         return self.player_text == self.goal_text
     
-    def get_last_correct_char(self):
+    """def get_last_correct_char(self):
         return self.last_correct_char
     
     def update_last_correct_char(self):
         for i, row in enumerate(self.goal_text):
             if i >= len(self.player_text):  # goal text has more rows than player text
-                self.last_correct_char = (i, 0)
+                self.last_correct_char = (0, i)
+                if i > self.cursor_coords[1]:
+                    self.need_to_redraw = True
                 return
             if row == self.player_text[i]:  # this row matches
                 continue
@@ -148,9 +150,15 @@ class ImvimModel():
                 # last correct char is on this row
                 for j, char in enumerate(row):
                     if j >= len(self.player_text[i]) or char != self.player_text[i][j]:
-                        self.last_correct_char = (i, j)
+                        self.last_correct_char = (j, i)
+                        if i > self.cursor_coords[1]:
+                            self.need_to_redraw = True
                         return
-        self.last_correct_char = None
+        x = len(self.goal_text[-1])
+        y = len(self.goal_text) - 1
+        self.last_correct_char = (x, y)
+        if y > self.cursor_coords[1]:
+            self.need_to_redraw = True"""
     
     def start_next_level(self) -> None:
         # when level complete, call this method
@@ -162,6 +170,7 @@ class ImvimModel():
         self.level += 1
         self.player_text = START_TEXTS[self.level]
         self.goal_text = GOAL_TEXTS[self.level]
+        self.update_last_correct_char()
 
     def set_historical_keypress(self, keypressed):
         if len(self.historical_keypress) >= 10:
