@@ -7,7 +7,7 @@ class ImvimModel():
         self.level = 0
         self.goal_text = GOAL_ZERO
         self.historical_keypress = [" "] * 10
-        self.max_line_width = 20
+        self.max_line_width = 60
         self.numbers_entered = 0 #track how many binary digits have been entered
 
     def get_cursor_coords(self):
@@ -169,4 +169,16 @@ class ImvimModel():
             return len(self.player_text[current_row - 1]) - 1
         
     def add_number(self, num: int) -> None:
-        pass
+        #this will not work if in the first 10 keypresses, as the last one will be space
+        if self.historical_keypress[-1] not in SYMBOLS_TO_NUMBERS:
+            self.numbers_entered = 0
+        self.numbers_entered = (1 + self.numbers_entered) % 4
+        if self.numbers_entered == 1:
+            self.insert_char_at_cursor(num)
+        else:
+            col, row = self.cursor_coords
+            current_num = self.player_text[row][col]
+            current_num = (current_num + (num * (2**self.numbers_entered))) % 10
+            #this needs to be replace, not insert
+            self.insert_char_at_cursor(num)
+
