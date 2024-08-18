@@ -9,6 +9,13 @@ class ImvimModel():
         self.historical_keypress = [" "] * 10
         self.max_line_width = 20
         self.numbers_entered = 0 #track how many binary digits have been entered
+        self.capsLock = False
+
+    def get_caps(self):
+        return self.capsLock
+    
+    def set_caps(self, caps: bool):
+        self.capsLock = caps
 
     def get_cursor_coords(self):
         # (col_num, row_num)
@@ -31,7 +38,7 @@ class ImvimModel():
         if row_num < len(self.player_text):
             self.player_text[row_num] = new_text
     
-    def insert_char_at_cursor(self, char: str, capsLock) -> None:
+    def insert_char_at_cursor(self, char: str, capsLock: bool) -> None:
         if capsLock:
             char = char.upper()
         if self.is_printable(char):

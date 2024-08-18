@@ -11,7 +11,7 @@ class ImvimController:
         self._imvimModel = ImvimModel()
         self._imvimView = ImvimView()
         self._imvimWindow = master
-        self.capsLock = False
+       
 
         self._imvimView.create_view(master)
         # TEST TEST TEST
@@ -30,7 +30,7 @@ class ImvimController:
         key_pressed = event.keysym
         print(key_pressed)
 
-        self.capsLock = self.capsLock ^ handle_caps_lock(key_pressed) # I love XOR 
+        self._imvimModel.set_caps(self._imvimModel.get_caps() ^ handle_caps_lock(key_pressed))
 
         # We should probably make this not as gross eventually vv
         if not handle_back_and_del(key_pressed, self._imvimModel) and not char_to_arrow(key_pressed, self._imvimModel) \
@@ -39,7 +39,7 @@ class ImvimController:
             and not convert_space(key_pressed, self._imvimModel) and not regular_char_to_char(key_pressed, self._imvimModel) \
             and not handle_force_quit(key_pressed, self._imvimWindow):
             # if none of the keys are detcted, insert char (will need to change later when we add more stuff)
-            self._imvimModel.insert_char_at_cursor(event.char, self.capsLock)
+            self._imvimModel.insert_char_at_cursor(event.char, self._imvimModel.get_caps())
         
 
         #TESTING
