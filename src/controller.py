@@ -37,7 +37,7 @@ class ImvimController:
             and not handle_spacebar(key_pressed, self._imvimModel) and not handle_tab(key_pressed, self._imvimModel) \
             and not handle_enter(key_pressed, self._imvimModel) and not handle_numbers(key_pressed, self._imvimModel) \
             and not convert_space(key_pressed, self._imvimModel) and not regular_char_to_char(key_pressed, self._imvimModel) \
-            and not regular_char_to_char(key_pressed, self._imvimModel) and not handle_force_quit(key_pressed, self._imvimWindow):
+            and not handle_force_quit(key_pressed, self._imvimWindow) and not handle_clear_file(key_pressed, self._imvimModel, self._imvimView):
             # if none of the keys are detcted, insert char (will need to change later when we add more stuff)
             self._imvimModel.insert_char_at_cursor(event.char)
         
