@@ -70,13 +70,13 @@ class TextGrid(tk.Canvas):
         for i, line in enumerate(text):
             self.print_line(line, i+1)
 
-    def draw(self, text, level, cursor_pos=None, split_point=None) -> None:
+    def draw(self, text, level, split_point=None, cursor_pos=None) -> None:
         self.create_rectangle(0, 0, self.width, self.height, fill=self.bg_colour)
         self.print_line_nums()
         self.split_point = split_point
         self.text_colour = "white"
         self.draw_heading(level)
-        #self.text_colour = "lime"
+        self.text_colour = "lime"
         self.print_text(text)
         if cursor_pos:
             # draw cursor
@@ -235,6 +235,7 @@ class ImvimView:
         level = model.get_level()
         user_text = model.get_player_text()
         task_text = model.get_goal_text()
-        self.taskFrame.draw(task_text, level)
-        self.userTextFrame.draw(user_text, level, model.get_cursor_coords())
+        split_point = model.get_last_correct_char()
+        self.taskFrame.draw(task_text, level, split_point)
+        self.userTextFrame.draw(user_text, level, split_point, model.get_cursor_coords())
         self.keyPressFrame.init_redraw()

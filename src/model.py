@@ -10,6 +10,7 @@ class ImvimModel():
         self.max_line_width = 60
         self.numbers_entered = 0 #track how many binary digits have been entered
         self.need_to_redraw = False
+        self.last_correct_char = (0,0)
         #self.capsLock = False
 
     # def get_caps(self):
@@ -104,21 +105,26 @@ class ImvimModel():
         self.move_cursor(0, 0)
 
     def is_level_beaten(self):
-        return not self.level
+        # return not self.level
         return self.player_text == self.goal_text
     
     def get_last_correct_char(self):
+        return self.last_correct_char
+    
+    def update_last_correct_char(self):
         for i, row in enumerate(self.goal_text):
             if i >= len(self.player_text):  # goal text has more rows than player text
-                return (i, 0)
+                self.last_correct_char = (i, 0)
+                return
             if row == self.player_text[i]:  # this row matches
                 continue
             else:
                 # last correct char is on this row
                 for j, char in enumerate(row):
                     if j >= len(self.player_text[i]) or char != self.player_text[i][j]:
-                        return (i, j)
-        return None
+                        self.last_correct_char = (i, j)
+                        return
+        self.last_correct_char = None
     
     def start_next_level(self) -> None:
         # when level complete, call this method

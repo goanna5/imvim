@@ -43,10 +43,10 @@ LEFT = 'l'
 RIGHT = 'r'
 
 
-NORMAL_UP = 'Up'
-NORMAL_DOWN = 'Down'
-NORMAL_LEFT = 'Left'
-NORMAL_RIGHT = 'Right'
+ARROW_UP = 'Up'
+ARROW_DOWN = 'Down'
+ARROW_LEFT = 'Left'
+ARROW_RIGHT = 'Right'
 
 # Costants related to caps enter tab
 CAPS = "Caps_Lock"
@@ -138,25 +138,25 @@ GRAVE_SYM, NOT_SYM, EXCLAMATION_SYM, AT_SYM, HASH_SYM, DOLLAR_SYM, PERCENT_SYM, 
 FULL_STOP_SYM, GREATER_THAN_SYM, SLASH_SYM, QUESTION_MARK_SYM, POWER_SYM, EQUAL_TO_SYM, LOGICAL_AND_SYM, LOGICAL_OR_SYM, TAB_SYM, SPACE_SYM]
 
 # Mapping of directions to coordinates
-MOVE_DELTAS = {
+FULL_CURSED_MOVE_DELTAS = {
     UP: (-2, 0),
     DOWN: (3, 0),
     RIGHT: (0, 7),
     LEFT: (0, -5),
 }
 
-NORMAL_MOVE_DELTAS = {
-    NORMAL_UP: (-1, 0),
-    NORMAL_DOWN: (1, 0),
-    NORMAL_RIGHT: (0, 1),
-    NORMAL_LEFT: (0, -1),
+ARROW_MOVE_DELTAS = {
+    ARROW_UP: (-1, 0),
+    ARROW_DOWN: (1, 0),
+    ARROW_RIGHT: (0, 1),
+    ARROW_LEFT: (0, -1),
 }
 
-CURSED_MOVE_DELTAS = {
-    NORMAL_UP: (-2, 0),
-    NORMAL_DOWN: (3, 0),
-    NORMAL_RIGHT: (0, 7),
-    NORMAL_LEFT: (0, -5),
+SORTA_CURSED_MOVE_DELTAS = {
+    UP: (-1, 0),
+    DOWN: (1, 0),
+    RIGHT: (0, 1),
+    LEFT: (0, -1),
 }
 
 REGULAR_CHAR_TO_CHAR = {

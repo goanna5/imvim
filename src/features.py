@@ -20,22 +20,24 @@ def char_to_arrow(key_pressed, model):
     If input is "udlr" convert this to a direction
     """
     # before min_level, arrow keys move normal distances
-    MIN_LEVEL = 1  # at min_level, arrow keys move cursed distances
-    MIN_LEVEL_TWO = 1  # min_level 2: 'udlr' move cursed distances
+    LEVEL_ONE = 1  # at min_level, arrow keys move cursed distances
+    LEVEL_TWO = 2  # min_level 2: 'udlr' move cursed distances
 
-    if model.get_level() < MIN_LEVEL_TWO:
-        if model.get_level() < MIN_LEVEL:
-            if key_pressed in NORMAL_MOVE_DELTAS:
-                model.move_cursor(NORMAL_MOVE_DELTAS[key_pressed][0], NORMAL_MOVE_DELTAS[key_pressed][1])
-                return True
-        else:
-            if key_pressed in CURSED_MOVE_DELTAS:
-                model.move_cursor(CURSED_MOVE_DELTAS[key_pressed][0], CURSED_MOVE_DELTAS[key_pressed][1])
-                return True
-    else:
-        if key_pressed in MOVE_DELTAS:
-            model.move_cursor(MOVE_DELTAS[key_pressed][0], MOVE_DELTAS[key_pressed][1])
+    current_level = model.get_level()
+
+    if current_level < LEVEL_ONE:
+        if key_pressed in ARROW_MOVE_DELTAS:
+            model.move_cursor(ARROW_MOVE_DELTAS[key_pressed][0], ARROW_MOVE_DELTAS[key_pressed][1])
             return True
+    elif current_level < LEVEL_TWO:
+        if key_pressed in SORTA_CURSED_MOVE_DELTAS:
+            model.move_cursor(SORTA_CURSED_MOVE_DELTAS[key_pressed][0], SORTA_CURSED_MOVE_DELTAS[key_pressed][1])
+            return True
+    else:
+        if key_pressed in FULL_CURSED_MOVE_DELTAS:
+            model.move_cursor(FULL_CURSED_MOVE_DELTAS[key_pressed][0], FULL_CURSED_MOVE_DELTAS[key_pressed][1])
+            return True
+        
     return False
 
 def handle_spacebar(key_pressed, model):

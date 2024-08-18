@@ -41,7 +41,7 @@ class ImvimController:
             # if none of the keys are detcted, insert char (will need to change later when we add more stuff)
             self._imvimModel.insert_char_at_cursor(event.char)
         
-
+        self._imvimModel.update_last_correct_char()
         #TESTING
         #print("player text: " + str(self._imvimModel.get_player_text()))
 
