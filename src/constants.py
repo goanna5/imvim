@@ -1,18 +1,37 @@
 MAX_LEVEL = 1
 
+
 GOAL_ZERO = ["Hello, World!"]
 
-GOAL_ONE = ["We are now on level one."]
+GOAL_ONE = ["Level 1", 
+            "is a bit trickier", 
+            "to navigate lol"]
 
-GOAL_TEXTS = [GOAL_ZERO, GOAL_ONE]
+GOAL_TWO = ["Bit of text up here",
+            "bit down here"]
 
-START_ZERO = ["Here is some text.",
-              "This is a sentence.",
-              "Sample text."]
+GOAL_TEXTS = [GOAL_ZERO, GOAL_ONE, GOAL_TWO]
 
-START_ONE = ["This is the initial text for", "level one."]
+START_ZERO = ["================== Welcome to imvim! ==================",
+"",
+"Each level will introduce new uhh... intuitive...",
+"keybinds: your goal is to type the text on the right",
+"correctly (MAKE SURE YOU DELETE ALL GREEN TEXT).",
+"",
+"To get started, delete all this text and then",
+"type the text on the right"]
 
-START_TEXTS = [START_ZERO, START_ONE]
+START_ONE = ["(delete these lines) Hint: We made moving around *much*",
+             "more intuitive. Why does one press l to go right in vim..."]
+
+START_TWO = ["Hint: moving around has been changed for maximum", 
+             "moving around efficiency!! Who moves by 1 space anyways...",
+             "",
+             "some",
+             "more",
+             "lines"]
+
+START_TEXTS = [START_ZERO, START_ONE, START_TWO]
 
 KEY_PRESS_FRAME_HEIGHT = 150
 TEXT_OFFSET = 4
@@ -162,6 +181,7 @@ REGULAR_CHAR_TO_CHAR = {
     ASTERISK: "F",
     OPEN_PARENTHESIS: "g",
     CLOSE_PARENTHESIS: "G",
+    LESS_THAN: "L",
 
     # symbols to symbols
     NOT: GRAVE_SYM,
@@ -179,10 +199,10 @@ REGULAR_CHAR_TO_CHAR = {
     SEMICOLON: CLOSE_BRACE_SYM,
     SINGLE_QUOTE: QUESTION_MARK_SYM,
     DOUBLE_QUOTES: BACKSLASH_SYM,
-    COMMA: "\\n",
-    LESS_THAN: EQUAL_TO_SYM,
-    GREATER_THAN: LOGICAL_AND_SYM,
-    QUESTION_MARK: LOGICAL_OR_SYM,
+    GREATER_THAN: "\\n",
+    EQUALS: EQUAL_TO_SYM,
+    FULL_STOP: LOGICAL_AND_SYM,
+    SLASH: LOGICAL_OR_SYM,
 
     # letters to letters
     "q": "q",
@@ -240,10 +260,10 @@ REGULAR_CHAR_TO_CHAR = {
 }
 
 SYMBOLS_MORE_THAN_ONE_CHAR = {
-    COMMA: "\\n",
-    LESS_THAN: EQUAL_TO_SYM,
-    GREATER_THAN: LOGICAL_AND_SYM,
-    QUESTION_MARK: LOGICAL_OR_SYM,
+    GREATER_THAN: "\\n",
+    COMMA: EQUAL_TO_SYM,
+    FULL_STOP: LOGICAL_AND_SYM,
+    SLASH: LOGICAL_OR_SYM,
 }
 
 SPECIAL_FUNCTIONALITY = {
@@ -262,4 +282,4 @@ SYMBOLS_TO_NUMBERS = {
 
 SYM_ENTERS = [GRAVE, ENTER] #write to enter
 
-SYM_TABS = [SLASH, TAB] #write to tab
+SYM_TABS = [QUESTION_MARK, TAB] #write to tab

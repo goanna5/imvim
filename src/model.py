@@ -2,13 +2,21 @@ from constants import *
 
 class ImvimModel():
     def __init__(self) -> None:
-        self.player_text = []
         self.cursor_coords = (0,0)
         self.level = 0
+        self.player_text = START_ZERO
         self.goal_text = GOAL_ZERO
         self.historical_keypress = [" "] * 10
-        self.max_line_width = 20
+        self.max_line_width = 60
         self.numbers_entered = 0 #track how many binary digits have been entered
+        self.need_to_redraw = False
+        #self.capsLock = False
+
+    # def get_caps(self):
+    #     return self.capsLock
+    
+    # def set_caps(self, caps: bool):
+    #     self.capsLock = caps
 
     def get_cursor_coords(self):
         # (col_num, row_num)
@@ -36,9 +44,7 @@ class ImvimModel():
         if row_num < len(self.player_text):
             self.player_text[row_num] = new_text
     
-    def insert_char_at_cursor(self, char: str, capsLock) -> None:
-        if capsLock:
-            char = char.upper()
+    def insert_char_at_cursor(self, char: str) -> None:
         if self.is_printable(char):
             col, row = self.cursor_coords
             if len(self.player_text) <= row:
@@ -50,13 +56,14 @@ class ImvimModel():
                 #if cursor now on row that doesn't exist, add new row
                 if row > len(self.player_text):
                     self.player_text.append("")
-                
-
+            
+            #this is to make the overflow go to the next row, but it would need a for loop
+            # if len(self.player_text[row] + char) > self.max_line_width:
+            #     if row >= len(self.player_text):
+            #         self.player_text.append("")
+            #     self.player_text[row + 1] = [self.max_line_width - 1:] + self.player_text[row + 1]
             self.player_text[row] = self.player_text[row][:col] + char + self.player_text[row][col:self.max_line_width - 1]
-            #self.player_text[row].append(char)
-            col += 1
             self.move_cursor(0, len(char))
-        #self.move_cursor(len(char), 0)
             
     def enter_at_cursor(self) -> None:
         current_line = self.get_current_line()
@@ -65,6 +72,7 @@ class ImvimModel():
         self.player_text.insert(y+1, current_line[x:])
         self.cursor_coords = (0, y+1)
         print(f"cursor coords: {self.cursor_coords}")
+        self.need_to_redraw = True
 
 
     def move_cursor(self, row_delta: int, col_delta: int) -> None:
@@ -77,15 +85,26 @@ class ImvimModel():
     
     # deletes contents of the current row (row array is still in the overall array)
     def delete_current_row(self):
-        if self.player_text != []:
+        # true if we need to redraw the whole thing
+        if self.player_text and self.player_text != [""]:
             """row = self.player_text[self.cursor_coords[1]]
             for i in range(len(row)):
                 row.pop()"""
-            self.player_text[self.cursor_coords[1]] = ""
+            if self.player_text[self.cursor_coords[1]]:
+                self.player_text[self.cursor_coords[1]] = ""
+            else:
+                self.player_text.pop(self.cursor_coords[1])
+                if self.cursor_coords[1]:
+                    self.move_cursor(-1, self.max_line_width)
+                else:
+                    self.move_cursor(0, 0)
+                self.need_to_redraw = True
+                return
         # self.move_cursor(0, len(row))
         self.move_cursor(0, 0)
 
     def is_level_beaten(self):
+        return not self.level
         return self.player_text == self.goal_text
     
     def get_last_correct_char(self):
@@ -158,7 +177,7 @@ class ImvimModel():
         for i in range(4):
             print("cords", col, row)
             #this is in case the space is across two lines
-            if len(self.player_text[row]) < 1 or col < 0:
+            if len(self.player_text[row]) < 1 or col < 1:
                 self.cursor_coords = (self.end_of_previous_row(self.cursor_coords[1]),self.cursor_coords[1] - 1)
                 col, row = self.cursor_coords
             print("row?",(self.player_text[row][(col):self.max_line_width - 1]))
@@ -173,4 +192,19 @@ class ImvimModel():
             return len(self.player_text[current_row - 1]) - 1
         
     def add_number(self, num: int) -> None:
-        pass
+        num = int(num)
+        col, row = self.cursor_coords
+        if col > 0 and self.player_text[row][col-1] not in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']:
+            print("string")
+            self.numbers_entered = 0
+        self.numbers_entered = (1 + self.numbers_entered)
+        print(self.numbers_entered)
+        if self.numbers_entered == 1:
+            self.insert_char_at_cursor(str(num))
+        else:
+            col, row = self.cursor_coords
+            current_num = int(self.player_text[row][col - 1])
+            current_num = (current_num + (num * (2**(self.numbers_entered-1)))) % 10
+            self.player_text[row] = self.player_text[row][:col - 1] + str(current_num) + self.player_text[row][col:self.max_line_width - 1]
+        self.numbers_entered %= 4
+

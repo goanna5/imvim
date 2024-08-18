@@ -114,11 +114,11 @@ def handle_force_quit(key_pressed, window):
         window.destroy()
         exit()
 
-def handle_caps_lock(key_pressed):
-    """
-    If input is . then toggle caps lock
-    """
-    return key_pressed == FULL_STOP
+# def handle_caps_lock(key_pressed):
+#     """
+#     If input is . then toggle caps lock
+#     """
+#     return key_pressed == FULL_STOP
         
 def handle_clear_file(key_pressed, model, view):
     """
