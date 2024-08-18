@@ -8,6 +8,7 @@ class ImvimModel():
         self.goal_text = GOAL_ZERO
         self.historical_keypress = [" "] * 10
         self.max_line_width = 60
+        self.numbers_entered = 0 #track how many binary digits have been entered
 
     
     def get_cursor_coords(self):
@@ -157,3 +158,6 @@ class ImvimModel():
     def end_of_previous_row(self, current_row: int) -> int:
         if current_row > 0:
             return len(self.player_text[current_row - 1]) - 1
+        
+    def add_number(self, num: int) -> None:
+        pass
