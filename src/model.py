@@ -61,8 +61,8 @@ class ImvimModel():
     def move_cursor(self, row_delta: int, col_delta: int) -> None:
         c, r = self.cursor_coords
         max_r = len(self.player_text) - 1
-        max_c = len(self.player_text[r])
         new_r = min(max(r + row_delta, 0), max_r)
+        max_c = len(self.player_text[new_r])
         new_c = min(max(c + col_delta, 0), max_c)
         self.cursor_coords = (new_c, new_r)
     
