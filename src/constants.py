@@ -23,6 +23,12 @@ DOWN = 'd'
 LEFT = 'l'
 RIGHT = 'r'
 
+
+NORMAL_UP = 'Up'
+NORMAL_DOWN = 'Down'
+NORMAL_LEFT = 'Left'
+NORMAL_RIGHT = 'Right'
+
 # Costants related to caps enter tab
 CAPS = "Caps_Lock"
 ENTER = "Return"
@@ -118,6 +124,20 @@ MOVE_DELTAS = {
     DOWN: (3, 0),
     RIGHT: (0, 7),
     LEFT: (0, -5),
+}
+
+NORMAL_MOVE_DELTAS = {
+    NORMAL_UP: (-1, 0),
+    NORMAL_DOWN: (1, 0),
+    NORMAL_RIGHT: (0, 1),
+    NORMAL_LEFT: (0, -1),
+}
+
+CURSED_MOVE_DELTAS = {
+    NORMAL_UP: (-2, 0),
+    NORMAL_DOWN: (3, 0),
+    NORMAL_RIGHT: (0, 7),
+    NORMAL_LEFT: (0, -5),
 }
 
 REGULAR_CHAR_TO_CHAR = {
