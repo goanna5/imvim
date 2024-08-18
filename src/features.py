@@ -102,6 +102,12 @@ def handle_force_quit(key_pressed, window):
     if key_pressed == "O":
         window.destroy()
         exit()
+
+def handle_caps_lock(key_pressed):
+    """
+    If input is . then toggle caps lock
+    """
+    return key_pressed == FULL_STOP
         
 
 
