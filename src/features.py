@@ -95,6 +95,16 @@ def handle_special(key_pressed, model):
     """
     pass
 
+def handle_force_quit(key_pressed, window):
+    """
+    If input is O then force quit.
+    """
+    if key_pressed == "O":
+        window.destroy()
+        exit()
+        
+
+
 def handle_numbers(key_pressed, model):
     """
     If input is 0 or 1, update the number

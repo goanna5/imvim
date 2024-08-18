@@ -10,6 +10,7 @@ class ImvimController:
         # create model and view instances?
         self._imvimModel = ImvimModel()
         self._imvimView = ImvimView()
+        self._imvimWindow = master
 
         self._imvimView.create_view(master)
         # TEST TEST TEST
