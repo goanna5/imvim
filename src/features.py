@@ -82,8 +82,10 @@ def handle_enter(key_pressed, model):
         if key_pressed in SYM_ENTERS:
         #will not be inserting a new char, will insert a new row/line!!!
         # model.insert_char_at_cursor(ENTER)
+            model.enter_at_cursor()
             return True
     elif key_pressed == ENTER:
+        model.enter_at_cursor()
         return True
     return False
 
@@ -92,6 +94,16 @@ def handle_special(key_pressed, model):
     If input is . T Y U O then call the respective special handlers
     """
     pass
+
+def handle_force_quit(key_pressed, window):
+    """
+    If input is O then force quit.
+    """
+    if key_pressed == "O":
+        window.destroy()
+        exit()
+        
+
 
 def handle_numbers(key_pressed, model):
     """
