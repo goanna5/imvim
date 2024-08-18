@@ -50,7 +50,12 @@ class ImvimModel():
         #self.move_cursor(len(char), 0)
             
     def enter_at_cursor(self) -> None:
-        pass
+        current_line = self.get_current_line()
+        x, y = self.cursor_coords
+        self.player_text[y] = current_line[:x]
+        self.player_text.insert(y+1, current_line[x:])
+        self.cursor_coords = (0, y+1)
+        print(f"cursor coords: {self.cursor_coords}")
 
 
     def move_cursor(self, row_delta: int, col_delta: int) -> None:
