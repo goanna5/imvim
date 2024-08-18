@@ -218,6 +218,8 @@ class ImvimView:
         task_text = model.get_goal_text()
         self.taskFrame.draw(task_text, level)
         self.userTextFrame.draw(user_text, level, model.get_cursor_coords())
+        self.keyPressFrame.init_redraw()
+
 
 
 '''def main():

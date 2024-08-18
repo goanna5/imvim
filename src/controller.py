@@ -10,6 +10,7 @@ class ImvimController:
         # create model and view instances?
         self._imvimModel = ImvimModel()
         self._imvimView = ImvimView()
+        self._imvimWindow = master
 
         self._imvimView.create_view(master)
         # TEST TEST TEST
@@ -31,8 +32,9 @@ class ImvimController:
         # We should probably make this not as gross eventually vv
         if not handle_back_and_del(key_pressed, self._imvimModel) and not char_to_arrow(key_pressed, self._imvimModel) \
             and not handle_spacebar(key_pressed, self._imvimModel) and not handle_tab(key_pressed, self._imvimModel) \
-            and not convert_space(key_pressed, self._imvimModel) and not handle_numbers(key_pressed, self._imvimModel) \
-            and not regular_char_to_char(key_pressed, self._imvimModel):
+            and not handle_enter(key_pressed, self._imvimModel) and not handle_numbers(key_pressed, self._imvimModel) \
+            and not convert_space(key_pressed, self._imvimModel) and not regular_char_to_char(key_pressed, self._imvimModel) \
+            and not handle_force_quit(key_pressed, self._imvimWindow):
             # if none of the keys are detcted, insert char (will need to change later when we add more stuff)
             self._imvimModel.insert_char_at_cursor(event.char)
         
@@ -54,6 +56,9 @@ class ImvimController:
             """ TEST TEST """
             self._imvimModel.start_next_level()
             self._imvimView.draw_new_level(self._imvimModel)
+            for i in range(10):
+                self._imvimModel.set_historical_keypress(" ")
+
             print("new level started")
             #self._imvimModel.player_text = ["I win the level teehee"]
 

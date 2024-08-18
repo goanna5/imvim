@@ -19,9 +19,20 @@ def char_to_arrow(key_pressed, model):
     """
     If input is "udlr" convert this to a direction
     """
-    MIN_LEVEL = 1
+    # before min_level, arrow keys move normal distances
+    MIN_LEVEL = 1  # at min_level, arrow keys move cursed distances
+    MIN_LEVEL_TWO = 1  # min_level 2: 'udlr' move cursed distances
 
-    if model.get_level() >= MIN_LEVEL:
+    if model.get_level() < MIN_LEVEL_TWO:
+        if model.get_level() < MIN_LEVEL:
+            if key_pressed in NORMAL_MOVE_DELTAS:
+                model.move_cursor(NORMAL_MOVE_DELTAS[key_pressed][0], NORMAL_MOVE_DELTAS[key_pressed][1])
+                return True
+        else:
+            if key_pressed in CURSED_MOVE_DELTAS:
+                model.move_cursor(CURSED_MOVE_DELTAS[key_pressed][0], CURSED_MOVE_DELTAS[key_pressed][1])
+                return True
+    else:
         if key_pressed in MOVE_DELTAS:
             model.move_cursor(MOVE_DELTAS[key_pressed][0], MOVE_DELTAS[key_pressed][1])
             return True
@@ -82,8 +93,10 @@ def handle_enter(key_pressed, model):
         if key_pressed in SYM_ENTERS:
         #will not be inserting a new char, will insert a new row/line!!!
         # model.insert_char_at_cursor(ENTER)
+            model.enter_at_cursor()
             return True
     elif key_pressed == ENTER:
+        model.enter_at_cursor()
         return True
     return False
 
@@ -92,6 +105,16 @@ def handle_special(key_pressed, model):
     If input is . T Y U O then call the respective special handlers
     """
     pass
+
+def handle_force_quit(key_pressed, window):
+    """
+    If input is O then force quit.
+    """
+    if key_pressed == "O":
+        window.destroy()
+        exit()
+        
+
 
 def handle_numbers(key_pressed, model):
     """

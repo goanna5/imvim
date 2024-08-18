@@ -10,7 +10,6 @@ class ImvimModel():
         self.max_line_width = 20
         self.numbers_entered = 0 #track how many binary digits have been entered
 
-    
     def get_cursor_coords(self):
         # (col_num, row_num)
         # i.e. (x, y) with (0,0) being the top left corner
@@ -53,14 +52,19 @@ class ImvimModel():
         #self.move_cursor(len(char), 0)
             
     def enter_at_cursor(self) -> None:
-        pass
+        current_line = self.get_current_line()
+        x, y = self.cursor_coords
+        self.player_text[y] = current_line[:x]
+        self.player_text.insert(y+1, current_line[x:])
+        self.cursor_coords = (0, y+1)
+        print(f"cursor coords: {self.cursor_coords}")
 
 
     def move_cursor(self, row_delta: int, col_delta: int) -> None:
         c, r = self.cursor_coords
         max_r = len(self.player_text) - 1
-        max_c = len(self.player_text[r])
         new_r = min(max(r + row_delta, 0), max_r)
+        max_c = len(self.player_text[new_r])
         new_c = min(max(c + col_delta, 0), max_c)
         self.cursor_coords = (new_c, new_r)
     
