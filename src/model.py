@@ -9,7 +9,6 @@ class ImvimModel():
         self.historical_keypress = [" "] * 10
         self.max_line_width = 60
 
-    
     def get_cursor_coords(self):
         # (col_num, row_num)
         # i.e. (x, y) with (0,0) being the top left corner

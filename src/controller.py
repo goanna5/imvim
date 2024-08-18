@@ -53,6 +53,9 @@ class ImvimController:
             """ TEST TEST """
             self._imvimModel.start_next_level()
             self._imvimView.draw_new_level(self._imvimModel)
+            for i in range(10):
+                self._imvimModel.set_historical_keypress(" ")
+
             print("new level started")
             #self._imvimModel.player_text = ["I win the level teehee"]
 

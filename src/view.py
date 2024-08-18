@@ -220,6 +220,7 @@ class ImvimView:
         self.userTextFrame.draw(user_text, level, model.get_cursor_coords())
 
 
+
 '''def main():
     view = ImvimView()
     root = view.create_view()
