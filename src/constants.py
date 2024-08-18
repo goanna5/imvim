@@ -4,19 +4,26 @@ MAX_LEVEL = 4
 GOAL_ZERO = ["Hello, World!"]
 
 GOAL_ONE = ["Level 1", 
-            "is a bit trickier", 
+            "is a bit harder", 
             "to navigate lol"]
 
 GOAL_TWO = ["Bit of text up here",
             "bit down here"]
 
-GOAL_TEXTS = [GOAL_ZERO, GOAL_ONE, GOAL_TWO]
+GOAL_THREE = ["I built a stack of blocks up",
+              "to the maximum build height",
+              "(minecraft core!!)"]
+
+GOAL_FOUR = ["Soooo super odd keyboard layouts huh",
+             "&& this is meant to be (very) hard"]
+
+GOAL_TEXTS = [GOAL_ZERO, GOAL_ONE, GOAL_TWO, GOAL_THREE, GOAL_FOUR]
 
 START_ZERO = ["================== Welcome to imvim! ==================",
 "",
 "Each level will introduce new uhh... intuitive...",
-"keybinds: your goal is to type the text on the right",
-"correctly (MAKE SURE YOU DELETE ALL GREEN TEXT).",
+"keybinds: your goal is to type the text on the RIGHT",
+"correctly (MAKE SURE YOU DELETE ALL HINTS).",
 "",
 "To get started, delete all this text and then",
 "type the text on the right"]
@@ -31,7 +38,15 @@ START_TWO = ["Hint: moving around has been changed for maximum",
              "more",
              "lines"]
 
-START_TEXTS = [START_ZERO, START_ONE, START_TWO]
+START_THREE = ["Hint: why so much space?? I need everything *stack*ed",
+                "together"]
+
+START_FOUR = ["Hint: think about what kinda keyboard layouts there are",
+               "- qwerty SUCKS. Directions are always constant dw",
+               "We maximised the efficiency of this keyboard for",
+               "programmers: () {} are *central* yknow"]
+
+START_TEXTS = [START_ZERO, START_ONE, START_TWO, START_THREE, START_FOUR]
 
 KEY_PRESS_FRAME_HEIGHT = 150
 TEXT_OFFSET = 4
