@@ -8,7 +8,7 @@ GOAL_ONE = ["Level 1",
             "to navigate lol"]
 
 GOAL_TWO = ["*Different challenge:",
-            "Fix the text on the left to look like this:",
+            "Fix the text to look like the right, keep everything else:",
             "",
             "Bit of text up here",
             "bit down here",
@@ -39,7 +39,10 @@ START_ZERO = ["================== Welcome to imvim! ==================",
 START_ONE = ["(delete these lines) Hint: We made moving around *much* ",
              "more intuitive. Why does one press l to go right in vim..."]
 
-START_TWO = ["Bit of text p here",
+START_TWO = ["*Different challenge:",
+            "Fix the text to look like the right, keep everything else:",
+            "",
+            "Bit of text p here",
             "bit down her",
             "3 lines?",
             "or ..."]
