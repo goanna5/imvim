@@ -113,6 +113,12 @@ def handle_force_quit(key_pressed, window):
     if key_pressed == "O":
         window.destroy()
         exit()
+
+def handle_caps_lock(key_pressed):
+    """
+    If input is . then toggle caps lock
+    """
+    return key_pressed == FULL_STOP
         
 
 
@@ -120,9 +126,11 @@ def handle_numbers(key_pressed, model):
     """
     If input is 0 or 1, update the number
     """
-    if key_pressed in SYMBOLS_TO_NUMBERS:
-        model.add_number(SYMBOLS_TO_NUMBERS[key_pressed])
-        return True
+    MIN_LEVEL = 2
+    if model.get_level() >= MIN_LEVEL:
+        if key_pressed in SYMBOLS_TO_NUMBERS:
+            model.add_number(SYMBOLS_TO_NUMBERS[key_pressed])
+            return True
     return False
 
 
