@@ -18,6 +18,11 @@ class ImvimModel():
     def get_player_text(self):
         # Returns a list of strings where each string is a line of text
         return self.player_text
+
+    def reset_player_text(self):
+        self.player_text = []
+        self.cursor_coords = (0,0)
+        self.numbers_entered = 0
     
     def get_goal_text(self):
         return self.goal_text

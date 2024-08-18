@@ -120,6 +120,16 @@ def handle_caps_lock(key_pressed):
     """
     return key_pressed == FULL_STOP
         
+def handle_clear_file(key_pressed, model, view):
+    """
+    If input is U, clear file
+    """
+    if key_pressed == "U":
+        num_lines_to_clear = len(model.get_player_text())
+        model.reset_player_text()
+        view.redraw_section(num_lines_to_clear, "")
+        return True
+    return False
 
 
 def handle_numbers(key_pressed, model):
