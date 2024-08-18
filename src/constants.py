@@ -4,7 +4,7 @@ MAX_LEVEL = 4
 GOAL_ZERO = ["Hello, World!"]
 
 GOAL_ONE = ["Level 1", 
-            "is a bit harder", 
+            "is really intuitive", 
             "to navigate lol"]
 
 GOAL_TWO = ["Bit of text up here",
@@ -15,7 +15,8 @@ GOAL_THREE = ["I built a stack of blocks up",
               "(minecraft core!!)"]
 
 GOAL_FOUR = ["Soooo super odd keyboard layouts huh",
-             "&& this is meant to be (very) hard"]
+             "&& this is meant to be (very) intuitive,",
+             "OF COURSE duh"]
 
 GOAL_TEXTS = [GOAL_ZERO, GOAL_ONE, GOAL_TWO, GOAL_THREE, GOAL_FOUR]
 
