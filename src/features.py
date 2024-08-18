@@ -170,10 +170,14 @@ def convert_space(key_pressed, model):
     this shouldnt immediately turn back into a " ")
     """
     MIN_LEVEL = 3
-    
-    if model.get_level() >= MIN_LEVEL:
+    if model.get_level() >= MIN_LEVEL and model.get_level() < MAX_LEVEL:
+        if key_pressed == 'e' and model.check_space(0):
+            model.delete_space()
+            model.insert_char_at_cursor(" ")
+            return True
+    elif model.get_level() >= MIN_LEVEL:
         if key_pressed in REGULAR_CHAR_TO_CHAR and REGULAR_CHAR_TO_CHAR[key_pressed] == 'e':
-            if model.check_space():
+            if model.check_space(1):
                 model.delete_space()
                 model.insert_char_at_cursor(" ")
                 return True
