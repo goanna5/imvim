@@ -24,29 +24,29 @@ GOAL_TEXTS = [GOAL_ZERO, GOAL_ONE, GOAL_TWO, GOAL_THREE, GOAL_FOUR]
 
 START_ZERO = ["================== Welcome to imvim! ==================",
 "",
-"Each level will introduce new uhh... intuitive...",
-"keybinds: your goal is to type the text on the right",
-"correctly on the left (MAKE SURE YOU DELETE ALL HINTS).",
+"Each level will introduce new uhh... intuitive... ",
+"keybinds: your goal is to type the text on the right ",
+"correctly on the left (MAKE SURE YOU DELETE ALL HINTS). ",
 "",
-"To get started, delete all this text and then",
+"To get started, delete all this text and then ",
 "type the text on the right"]
 
-START_ONE = ["(delete these lines) Hint: We made moving around *much*",
+START_ONE = ["(delete these lines) Hint: We made moving around *much* ",
              "more intuitive. Why does one press l to go right in vim..."]
 
-START_TWO = ["Hint: moving around has been changed for maximum", 
-             "moving around efficiency!! Who moves by 1 space anyways...",
+START_TWO = ["Hint: moving around has been changed for maximum ", 
+             "moving around efficiency!! Who moves by 1 space anyways... ",
              "",
-             "some",
-             "more",
-             "lines"]
+             "some ",
+             "more ",
+             "lines "]
 
-START_THREE = ["Hint: why so much space?? I need everything *stack*ed",
+START_THREE = ["Hint: why so much space?? I need everything *stack*ed ",
                 "together"]
 
-START_FOUR = ["Hint: think about what kinda keyboard layouts there are",
-               "- qwerty SUCKS. Directions are always constant dw",
-               "We maximised the efficiency of this keyboard for",
+START_FOUR = ["Hint: think about what kinda keyboard layouts there are ",
+               "- qwerty SUCKS. Directions are always constant dw ",
+               "We maximised the efficiency of this keyboard for ",
                "programmers: () {} are *central* yknow"]
 
 START_TEXTS = [START_ZERO, START_ONE, START_TWO, START_THREE, START_FOUR]
