@@ -96,7 +96,7 @@ class ImvimModel():
         self.need_to_redraw = False
 
     def is_level_beaten(self):
-        #return not self.level
+        return not self.level
         return self.player_text == self.goal_text
     
     def get_last_correct_char(self):
@@ -184,18 +184,19 @@ class ImvimModel():
             return len(self.player_text[current_row - 1]) - 1
         
     def add_number(self, num: int) -> None:
-        #this will not work if in the first 10 keypresses, as the last one will be space
-        if self.historical_keypress[-1] not in SYMBOLS_TO_NUMBERS:
+        num = int(num)
+        col, row = self.cursor_coords
+        if col > 0 and self.player_text[row][col-1] not in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']:
             print("string")
             self.numbers_entered = 0
-        self.numbers_entered = (1 + self.numbers_entered) % 4
+        self.numbers_entered = (1 + self.numbers_entered)
         print(self.numbers_entered)
         if self.numbers_entered == 1:
-            self.insert_char_at_cursor(num, False)
+            self.insert_char_at_cursor(str(num))
         else:
             col, row = self.cursor_coords
-            current_num = self.player_text[row][col - 1]
-            current_num = (current_num + (num * (2**self.numbers_entered))) % 10
-            #this needs to be replace, not insert
-            self.insert_char_at_cursor(num, False)
+            current_num = int(self.player_text[row][col - 1])
+            current_num = (current_num + (num * (2**(self.numbers_entered-1)))) % 10
+            self.player_text[row] = self.player_text[row][:col - 1] + str(current_num) + self.player_text[row][col:self.max_line_width - 1]
+        self.numbers_entered %= 4
 
