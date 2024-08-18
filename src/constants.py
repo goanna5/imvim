@@ -39,10 +39,10 @@ START_ZERO = ["================== Welcome to imvim! ==================",
 START_ONE = ["(delete these lines) Hint: We made moving around *much* ",
              "more intuitive. Why does one press l to go right in vim..."]
 
-START_TWO = ["Bit of text ip here",
+START_TWO = ["Bit of text p here",
             "bit down her",
             "3 lines?",
-            "or 9..."]
+            "or ..."]
 
 START_THREE = ["Hint: for maximum efficiency you can move super quick :D"]
 
