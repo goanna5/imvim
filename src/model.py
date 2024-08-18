@@ -10,13 +10,13 @@ class ImvimModel():
         self.max_line_width = 60
         self.numbers_entered = 0 #track how many binary digits have been entered
         self.need_to_redraw = False
-        self.capsLock = False
+        #self.capsLock = False
 
-    def get_caps(self):
-        return self.capsLock
+    # def get_caps(self):
+    #     return self.capsLock
     
-    def set_caps(self, caps: bool):
-        self.capsLock = caps
+    # def set_caps(self, caps: bool):
+    #     self.capsLock = caps
 
     def get_cursor_coords(self):
         # (col_num, row_num)
@@ -39,9 +39,7 @@ class ImvimModel():
         if row_num < len(self.player_text):
             self.player_text[row_num] = new_text
     
-    def insert_char_at_cursor(self, char: str, capsLock: bool) -> None:
-        if capsLock:
-            char = char.upper()
+    def insert_char_at_cursor(self, char: str) -> None:
         if self.is_printable(char):
             col, row = self.cursor_coords
             if len(self.player_text) <= row:
@@ -101,6 +99,7 @@ class ImvimModel():
         self.move_cursor(0, 0)
 
     def is_level_beaten(self):
+        #return not self.level
         return self.player_text == self.goal_text
     
     def get_last_correct_char(self):
