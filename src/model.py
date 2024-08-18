@@ -170,7 +170,7 @@ class ImvimModel():
         self.level += 1
         self.player_text = START_TEXTS[self.level]
         self.goal_text = GOAL_TEXTS[self.level]
-        self.update_last_correct_char()
+        # self.update_last_correct_char()
 
     def set_historical_keypress(self, keypressed):
         if len(self.historical_keypress) >= 10:
