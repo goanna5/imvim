@@ -194,7 +194,7 @@ class ImvimModel():
     def add_number(self, num: int) -> None:
         num = int(num)
         col, row = self.cursor_coords
-        if col > 0 and self.player_text[row][col-1] not in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']:
+        if col == 0 or (col > 0 and self.player_text[row][col-1] not in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']):
             print("string")
             self.numbers_entered = 0
         self.numbers_entered = (1 + self.numbers_entered)
