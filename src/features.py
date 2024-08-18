@@ -82,8 +82,10 @@ def handle_enter(key_pressed, model):
         if key_pressed in SYM_ENTERS:
         #will not be inserting a new char, will insert a new row/line!!!
         # model.insert_char_at_cursor(ENTER)
+            model.enter_at_cursor()
             return True
     elif key_pressed == ENTER:
+        model.enter_at_cursor()
         return True
     return False
 
