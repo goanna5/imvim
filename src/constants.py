@@ -8,10 +8,12 @@ GOAL_ONE = ["Level 1",
             "to navigate lol"]
 
 GOAL_TWO = ["Bit of text up here",
-            "bit down here"]
+            "bit down here",
+            "3 lines?",
+            "or 4..."]
 
-GOAL_THREE = ["I built a stack of blocks up",
-              "to the maximum build height",
+GOAL_THREE = ["I built a lot of blocks up",
+              "to the maximum build height: 320",
               "(minecraft core!!)"]
 
 GOAL_FOUR = ["Soooo super odd keyboard layouts huh",
@@ -23,8 +25,8 @@ GOAL_TEXTS = [GOAL_ZERO, GOAL_ONE, GOAL_TWO, GOAL_THREE, GOAL_FOUR]
 START_ZERO = ["================== Welcome to imvim! ==================",
 "",
 "Each level will introduce new uhh... intuitive...",
-"keybinds: your goal is to type the text on the RIGHT",
-"correctly (MAKE SURE YOU DELETE ALL HINTS).",
+"keybinds: your goal is to type the text on the right",
+"correctly on the left (MAKE SURE YOU DELETE ALL HINTS).",
 "",
 "To get started, delete all this text and then",
 "type the text on the right"]
