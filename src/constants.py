@@ -139,10 +139,10 @@ FULL_STOP_SYM, GREATER_THAN_SYM, SLASH_SYM, QUESTION_MARK_SYM, POWER_SYM, EQUAL_
 
 # Mapping of directions to coordinates
 MOVE_DELTAS = {
-    UP: (-2, 0),
-    DOWN: (3, 0),
-    RIGHT: (0, 7),
-    LEFT: (0, -5),
+    UP: (-1, 0),
+    DOWN: (1, 0),
+    RIGHT: (0, 1),
+    LEFT: (0, -1),
 }
 
 NORMAL_MOVE_DELTAS = {
@@ -153,10 +153,17 @@ NORMAL_MOVE_DELTAS = {
 }
 
 CURSED_MOVE_DELTAS = {
-    NORMAL_UP: (-2, 0),
-    NORMAL_DOWN: (3, 0),
-    NORMAL_RIGHT: (0, 7),
-    NORMAL_LEFT: (0, -5),
+    UP: (-2, 0),
+    DOWN: (3, 0),
+    RIGHT: (0, 7),
+    LEFT: (0, -5),
+}
+
+ARROW_TO_CHAR = {
+    "Up": UP,
+    "Down": DOWN,
+    "Left": LEFT,
+    "Right": RIGHT,
 }
 
 REGULAR_CHAR_TO_CHAR = {
