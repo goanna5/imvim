@@ -7,7 +7,7 @@ class ImvimModel():
         self.player_text = START_ZERO
         self.goal_text = GOAL_ZERO
         self.historical_keypress = [" "] * 10
-        self.max_line_width = 20
+        self.max_line_width = 60
         self.numbers_entered = 0 #track how many binary digits have been entered
         self.need_to_redraw = False
         self.capsLock = False
@@ -53,13 +53,14 @@ class ImvimModel():
                 #if cursor now on row that doesn't exist, add new row
                 if row > len(self.player_text):
                     self.player_text.append("")
-                
-
+            
+            #this is to make the overflow go to the next row, but it would need a for loop
+            # if len(self.player_text[row] + char) > self.max_line_width:
+            #     if row >= len(self.player_text):
+            #         self.player_text.append("")
+            #     self.player_text[row + 1] = [self.max_line_width - 1:] + self.player_text[row + 1]
             self.player_text[row] = self.player_text[row][:col] + char + self.player_text[row][col:self.max_line_width - 1]
-            #self.player_text[row].append(char)
-            col += 1
             self.move_cursor(0, len(char))
-        #self.move_cursor(len(char), 0)
             
     def enter_at_cursor(self) -> None:
         current_line = self.get_current_line()
@@ -97,6 +98,7 @@ class ImvimModel():
         self.need_to_redraw = False
 
     def is_level_beaten(self):
+        return not self.level
         return self.player_text == self.goal_text
     
     def get_last_correct_char(self):
@@ -169,7 +171,7 @@ class ImvimModel():
         for i in range(4):
             print("cords", col, row)
             #this is in case the space is across two lines
-            if len(self.player_text[row]) < 1 or col < 0:
+            if len(self.player_text[row]) < 1 or col < 1:
                 self.cursor_coords = (self.end_of_previous_row(self.cursor_coords[1]),self.cursor_coords[1] - 1)
                 col, row = self.cursor_coords
             print("row?",(self.player_text[row][(col):self.max_line_width - 1]))
@@ -184,4 +186,18 @@ class ImvimModel():
             return len(self.player_text[current_row - 1]) - 1
         
     def add_number(self, num: int) -> None:
-        pass
+        #this will not work if in the first 10 keypresses, as the last one will be space
+        if self.historical_keypress[-1] not in SYMBOLS_TO_NUMBERS:
+            print("string")
+            self.numbers_entered = 0
+        self.numbers_entered = (1 + self.numbers_entered) % 4
+        print(self.numbers_entered)
+        if self.numbers_entered == 1:
+            self.insert_char_at_cursor(num, False)
+        else:
+            col, row = self.cursor_coords
+            current_num = self.player_text[row][col - 1]
+            current_num = (current_num + (num * (2**self.numbers_entered))) % 10
+            #this needs to be replace, not insert
+            self.insert_char_at_cursor(num, False)
+
