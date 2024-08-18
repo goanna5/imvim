@@ -10,7 +10,7 @@ GOAL_ONE = ["Level 1",
 GOAL_TWO = ["Bit of text up here",
             "bit down here"]
 
-GOAL_THREE = ["I built a stack of blocks up",
+GOAL_THREE = ["I built a lot of blocks up",
               "to the maximum build height",
               "(minecraft core!!)"]
 
