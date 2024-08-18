@@ -28,6 +28,8 @@ START_ZERO = ["================== Welcome to imvim! ==================",
 "keybinds: your goal is to type the text on the right ",
 "correctly on the left (MAKE SURE YOU DELETE ALL HINTS). ",
 "",
+"Hints are your friend, **READ THEM** ",
+"",
 "To get started, delete all this text and then ",
 "type the text on the right"]
 
