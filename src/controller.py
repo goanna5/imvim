@@ -31,6 +31,27 @@ class ImvimController:
         print(key_pressed)
 
         #self._imvimModel.set_caps(self._imvimModel.get_caps() ^ handle_caps_lock(key_pressed))
+        
+        # We should probably make this not as gross eventually vv
+        if not self._imvimModel.get_pop_up():
+            if not handle_back_and_del(key_pressed, self._imvimModel) and not char_to_arrow(key_pressed, self._imvimModel) \
+                and not arrow_to_char(key_pressed, self._imvimModel)\
+                and not handle_spacebar(key_pressed, self._imvimModel) and not handle_tab(key_pressed, self._imvimModel) \
+                and not handle_enter(key_pressed, self._imvimModel) and not handle_numbers(key_pressed, self._imvimModel) \
+                and not convert_space(key_pressed, self._imvimModel) and not regular_char_to_char(key_pressed, self._imvimModel) \
+                and not handle_force_quit(key_pressed, self._imvimWindow) and not handle_clear_file(key_pressed, self._imvimModel, self._imvimView):
+                # if none of the keys are detcted, insert char (will need to change later when we add more stuff)
+                self._imvimModel.insert_char_at_cursor(event.char)
+        
+        # self._imvimModel.update_last_correct_char()
+        #TESTING
+        #print("player text: " + str(self._imvimModel.get_player_text()))
+
+        # pass keys pressed to the thing displaying on the gui
+        #self._imvimView.display_keypress()
+        self._imvimModel.set_historical_keypress(key_pressed)
+        print(self._imvimModel.get_historical_keypress())
+
         if self._imvimModel.get_pop_up():
             level_popup(self._imvimModel, key_pressed)
             # TEST TEST 
@@ -42,25 +63,6 @@ class ImvimController:
 
             print("new level started")
             #self._imvimModel.player_text = ["I win the level teehee"]
-        # We should probably make this not as gross eventually vv
-        elif not handle_back_and_del(key_pressed, self._imvimModel) and not char_to_arrow(key_pressed, self._imvimModel) \
-            and not arrow_to_char(key_pressed, self._imvimModel)\
-            and not handle_spacebar(key_pressed, self._imvimModel) and not handle_tab(key_pressed, self._imvimModel) \
-            and not handle_enter(key_pressed, self._imvimModel) and not handle_numbers(key_pressed, self._imvimModel) \
-            and not convert_space(key_pressed, self._imvimModel) and not regular_char_to_char(key_pressed, self._imvimModel) \
-            and not handle_force_quit(key_pressed, self._imvimWindow) and not handle_clear_file(key_pressed, self._imvimModel, self._imvimView):
-            # if none of the keys are detcted, insert char (will need to change later when we add more stuff)
-            self._imvimModel.insert_char_at_cursor(event.char)
-        
-        # self._imvimModel.update_last_correct_char()
-        #TESTING
-        #print("player text: " + str(self._imvimModel.get_player_text()))
-
-        # pass keys pressed to the thing displaying on the gui
-        #self._imvimView.display_keypress()
-        self._imvimModel.set_historical_keypress(key_pressed)
-        print(self._imvimModel.get_historical_keypress())
-
         
         # DETERMINE IF LEVEL IS BEATEN
         if self._imvimModel.is_level_beaten():
