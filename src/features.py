@@ -46,13 +46,13 @@ def handle_spacebar(key_pressed, model):
 
     if key_pressed == "space":
         if model.get_level() >= MIN_LEVEL:
-            model.insert_char_at_cursor("s")
-            model.insert_char_at_cursor("p")
-            model.insert_char_at_cursor("a")
-            model.insert_char_at_cursor("c")
-            model.insert_char_at_cursor("e")
+            model.insert_char_at_cursor("s", model.get_caps())
+            model.insert_char_at_cursor("p", model.get_caps())
+            model.insert_char_at_cursor("a", model.get_caps())
+            model.insert_char_at_cursor("c", model.get_caps())
+            model.insert_char_at_cursor("e", model.get_caps())
         else:
-            model.insert_char_at_cursor(" ")
+            model.insert_char_at_cursor(" ", model.get_caps())
         return True
     return False
 
@@ -65,9 +65,9 @@ def regular_char_to_char(key_pressed, model):
                 #this doesn't work -> will manually write
                 to_add = str(SYMBOLS_MORE_THAN_ONE_CHAR[key_pressed])
                 for i in str(to_add):
-                    model.insert_char_at_cursor(i)
+                    model.insert_char_at_cursor(i, model.get_caps())
             else:
-                model.insert_char_at_cursor(REGULAR_CHAR_TO_CHAR[key_pressed])
+                model.insert_char_at_cursor(REGULAR_CHAR_TO_CHAR[key_pressed], model.get_caps())
             return True
     return False
 
@@ -79,7 +79,7 @@ def handle_tab(key_pressed, model):
 
     if model.get_level() >= MIN_LEVEL:
         if key_pressed in SYM_TABS:
-            model.insert_char_at_cursor(TAB_SYM)
+            model.insert_char_at_cursor(TAB_SYM, model.get_caps())
             return True
     return False
 
@@ -150,6 +150,6 @@ def convert_space(key_pressed, model):
         if key_pressed in REGULAR_CHAR_TO_CHAR and REGULAR_CHAR_TO_CHAR[key_pressed] == 'e':
             if model.check_space():
                 model.delete_space()
-                model.insert_char_at_cursor(" ")
+                model.insert_char_at_cursor(" ", model.get_caps())
                 return True
     return False

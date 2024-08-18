@@ -1,18 +1,37 @@
 MAX_LEVEL = 1
 
+
 GOAL_ZERO = ["Hello, World!"]
 
-GOAL_ONE = ["We are now on level one."]
+GOAL_ONE = ["Level 1", 
+            "is a bit trickier", 
+            "to navigate lol"]
 
-GOAL_TEXTS = [GOAL_ZERO, GOAL_ONE]
+GOAL_TWO = ["Bit of text up here",
+            "bit down here"]
 
-START_ZERO = ["Here is some text.",
-              "This is a sentence.",
-              "Sample text."]
+GOAL_TEXTS = [GOAL_ZERO, GOAL_ONE, GOAL_TWO]
 
-START_ONE = ["This is the initial text for", "level one."]
+START_ZERO = ["================== Welcome to imvim! ==================",
+"",
+"Each level will introduce new uhh... intuitive...",
+"keybinds: your goal is to type the text on the right",
+"correctly (MAKE SURE YOU DELETE ALL GREEN TEXT).",
+"",
+"To get started, delete all this text and then",
+"type the text on the right"]
 
-START_TEXTS = [START_ZERO, START_ONE]
+START_ONE = ["(delete these lines) Hint: We made moving around *much*",
+             "more intuitive. Why does one press l to go right in vim..."]
+
+START_TWO = ["Hint: moving around has been changed for maximum", 
+             "moving around efficiency!! Who moves by 1 space anyways...",
+             "",
+             "some",
+             "more",
+             "lines"]
+
+START_TEXTS = [START_ZERO, START_ONE, START_TWO]
 
 KEY_PRESS_FRAME_HEIGHT = 150
 TEXT_OFFSET = 4
