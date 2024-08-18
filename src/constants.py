@@ -1,4 +1,4 @@
-MAX_LEVEL = 1
+MAX_LEVEL = 4
 
 
 GOAL_ZERO = ["Hello, World!"]
@@ -157,6 +157,13 @@ SORTA_CURSED_MOVE_DELTAS = {
     DOWN: (1, 0),
     RIGHT: (0, 1),
     LEFT: (0, -1),
+}
+
+ARROW_TO_CHAR = {
+    ARROW_UP : UP,
+    ARROW_DOWN: DOWN,
+    ARROW_LEFT: LEFT,
+    ARROW_RIGHT: RIGHT,
 }
 
 REGULAR_CHAR_TO_CHAR = {

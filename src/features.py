@@ -19,10 +19,12 @@ def arrow_to_char(key_pressed, model):
     """
     If input is an arrow key, write corresponding letter
     """
-    return
-    if key_pressed in ARROW_TO_CHAR:
-        model.insert_char_at_cursor(ARROW_TO_CHAR[key_pressed])
-        return True
+    MIN_LEVEL = 1
+
+    if model.get_level() >= MIN_LEVEL:
+        if key_pressed in ARROW_TO_CHAR:
+            model.insert_char_at_cursor(ARROW_TO_CHAR[key_pressed])
+            return True
     return False
 
 
@@ -176,3 +178,10 @@ def convert_space(key_pressed, model):
                 model.insert_char_at_cursor(" ")
                 return True
     return False
+
+def level_popup(model, key_pressed = None):
+    if model.get_pop_up():
+        if key_pressed:
+            model.set_pop_up(False)
+    else:
+        model.set_pop_up(True)
