@@ -126,7 +126,7 @@ class TextGrid(tk.Canvas):
             self.redraw_line(i, text)
 
     def draw_success_box(self, last_level) -> None:
-        box_width = 500
+        box_width = 600
         box_height = 300
         x1 = (self.width - box_width) // 2
         x2 = (self.width + box_width) // 2
@@ -135,11 +135,11 @@ class TextGrid(tk.Canvas):
         self.create_rectangle(x1, y1, x2, y2, fill="white", width=5)
         mid_x = self.width // 2
         mid_y = self.height // 2
-        self.create_text((mid_x, mid_y-50), text="CONGRATULATIONS!", anchor=CENTER, fill="black", font=("Consolas", 20))
+        self.create_text((mid_x, mid_y-50), text="CONGRATULATIONS!", anchor=CENTER, fill="black", font=("Consolas", 28))
         if last_level:
-            self.create_text((mid_x, mid_y+50), text="You completed all the levels :)", anchor=CENTER, fill="black", font=("Consolas", 20))
+            self.create_text((mid_x, mid_y+50), text="You completed all the levels :)", anchor=CENTER, fill="black", font=("Consolas", 28))
         else:
-            self.create_text((mid_x, mid_y+50), text="Press any key to continue.", anchor=CENTER, fill="black", font=("Consolas", 20))
+            self.create_text((mid_x, mid_y+50), text="Press any key to continue.", anchor=CENTER, fill="black", font=("Consolas", 28))
         
 
 
