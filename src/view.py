@@ -122,7 +122,7 @@ class TextGrid(tk.Canvas):
 
     def redraw_num_lines(self, num_lines, text) -> None:
         #Redraw line from first line up to number of lines
-        for i in range(1, num_lines):
+        for i in range(1, num_lines + 1):
             self.redraw_line(i, text)
 
     def draw_success_box(self) -> None:
@@ -252,7 +252,7 @@ class ImvimView:
         # self.userTextFrame.draw(user_text, level, split_point, model.get_cursor_coords())
         self.taskFrame.draw(task_text, level)
         self.userTextFrame.draw(user_text, level, model.get_cursor_coords())
-        self.keyPressFrame.init_redraw()
+        self.keyPressFrame.clear()
 
     def draw_success_message(self):
         self.userTextFrame.draw_success_box()
