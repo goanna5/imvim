@@ -47,9 +47,9 @@ class ImvimModel():
             elif col >= self.max_line_width:
                 row = row + 1
                 self.cursor_coords = (0, row)
-                col, row = self.cursor_coords
+                # col, row = self.cursor_coords
                 #if cursor now on row that doesn't exist, add new row
-                if row > len(self.player_text):
+                if row >= len(self.player_text):
                     self.player_text.append("")
             
             #this is to make the overflow go to the next row, but it would need a for loop
@@ -104,9 +104,9 @@ class ImvimModel():
     
     def get_last_correct_char(self):
         for i, row in enumerate(self.goal_text):
-            if i >= len(self.player_text):
+            if i >= len(self.player_text):  # goal text has more rows than player text
                 return (i, 0)
-            if row == self.player_text[i]:
+            if row == self.player_text[i]:  # this row matches
                 continue
             else:
                 # last correct char is on this row
