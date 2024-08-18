@@ -239,4 +239,4 @@ class ImvimView:
         # self.userTextFrame.draw(user_text, level, split_point, model.get_cursor_coords())
         self.taskFrame.draw(task_text, level)
         self.userTextFrame.draw(user_text, level, model.get_cursor_coords())
-        self.keyPressFrame.init_redraw()
+        self.keyPressFrame.clear()
