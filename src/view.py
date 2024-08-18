@@ -51,7 +51,7 @@ class TextGrid(tk.Canvas):
         self.create_line(x1,y,x2,y, fill="#555555", width=2)
 
     def redraw_heading(self, level) -> None:
-        self.create_rectangle(0,0, self.width, self.cell_height, fill="#333333")
+        self.create_rectangle(0,0, self.width, self.cell_height, fill=self.bg_colour)
         line = self.name + "_level_" + str(level) + ".txt"
         self.print_line(line, 0)
 
@@ -89,6 +89,16 @@ class TextGrid(tk.Canvas):
         y2 = (1+row_num)*self.cell_height+2
         self.create_rectangle(x1, y1, x2, y2, fill=self.bg_colour, width=0)
         self.print_line(text, row_num)
+
+    def redraw_text_area(self, min_row, text, cursor_pos) -> None:
+        x1 = TEXT_OFFSET*self.cell_width - 1
+        y1 = (1+min_row)*self.cell_height
+        x2 = self.width
+        y2 = self.height
+        self.create_rectangle(x1, y1, x2, y2, fill=self.bg_colour, width=0)
+        for i in range(min_row, len(text)):
+            self.print_line(text[i], i+1)
+        self.draw_cursor(cursor_pos)
 
 
     def redraw(self, text, prior_cursor=None, cursor_pos=None, split_point=None) -> None:
@@ -219,15 +229,3 @@ class ImvimView:
         self.taskFrame.draw(task_text, level)
         self.userTextFrame.draw(user_text, level, model.get_cursor_coords())
         self.keyPressFrame.init_redraw()
-
-
-
-'''def main():
-    view = ImvimView()
-    root = view.create_view()
-    # TEST TEST TEST
-    view.test_redraw()
-    view.display_view(root)
-
-if __name__ == "__main__":
-    main()'''
