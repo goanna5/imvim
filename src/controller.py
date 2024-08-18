@@ -71,6 +71,7 @@ class ImvimController:
             # print("redrawing whole thing")
             # self._imvimView.userTextFrame.redraw_text_area(self._imvimModel.get_cursor_coords()[1], self._imvimModel.get_player_text())
             self._imvimView.userTextFrame.redraw_text_area(0, self._imvimModel.get_player_text(), self._imvimModel.get_cursor_coords())
+            self._imvimModel.need_to_redraw = False
         self._imvimView.redraw(self._imvimModel, prior_cursor)
 
     # updates game state/ position of the cursor although this is done indirectly through modfiying methods

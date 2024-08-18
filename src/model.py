@@ -67,6 +67,7 @@ class ImvimModel():
         self.player_text.insert(y+1, current_line[x:])
         self.cursor_coords = (0, y+1)
         print(f"cursor coords: {self.cursor_coords}")
+        self.need_to_redraw = True
 
 
     def move_cursor(self, row_delta: int, col_delta: int) -> None:
@@ -88,12 +89,14 @@ class ImvimModel():
                 self.player_text[self.cursor_coords[1]] = ""
             else:
                 self.player_text.pop(self.cursor_coords[1])
-                self.move_cursor(-1, self.max_line_width)
+                if self.cursor_coords[1]:
+                    self.move_cursor(-1, self.max_line_width)
+                else:
+                    self.move_cursor(0, 0)
                 self.need_to_redraw = True
                 return
         # self.move_cursor(0, len(row))
         self.move_cursor(0, 0)
-        self.need_to_redraw = False
 
     def is_level_beaten(self):
         return not self.level
