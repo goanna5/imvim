@@ -31,9 +31,19 @@ class ImvimController:
         print(key_pressed)
 
         #self._imvimModel.set_caps(self._imvimModel.get_caps() ^ handle_caps_lock(key_pressed))
+        if self._imvimModel.get_pop_up():
+            level_popup(self._imvimModel, key_pressed)
+            # TEST TEST 
+            """ TEST TEST """
+            self._imvimModel.start_next_level()
+            self._imvimView.draw_new_level(self._imvimModel)
+            for i in range(10):
+                self._imvimModel.set_historical_keypress(" ")
 
+            print("new level started")
+            #self._imvimModel.player_text = ["I win the level teehee"]
         # We should probably make this not as gross eventually vv
-        if not handle_back_and_del(key_pressed, self._imvimModel) and not char_to_arrow(key_pressed, self._imvimModel) \
+        elif not handle_back_and_del(key_pressed, self._imvimModel) and not char_to_arrow(key_pressed, self._imvimModel) \
             and not arrow_to_char(key_pressed, self._imvimModel)\
             and not handle_spacebar(key_pressed, self._imvimModel) and not handle_tab(key_pressed, self._imvimModel) \
             and not handle_enter(key_pressed, self._imvimModel) and not handle_numbers(key_pressed, self._imvimModel) \
@@ -55,16 +65,8 @@ class ImvimController:
         # DETERMINE IF LEVEL IS BEATEN
         if self._imvimModel.is_level_beaten():
             # level has been beaten
+            level_popup(self._imvimModel)
 
-            # TEST TEST 
-            """ TEST TEST """
-            self._imvimModel.start_next_level()
-            self._imvimView.draw_new_level(self._imvimModel)
-            for i in range(10):
-                self._imvimModel.set_historical_keypress(" ")
-
-            print("new level started")
-            #self._imvimModel.player_text = ["I win the level teehee"]
 
         ### redraw gui ### <- maybe a view method, may need to make one in controller
         if self._imvimModel.need_to_redraw:
