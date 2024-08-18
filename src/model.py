@@ -130,7 +130,7 @@ class ImvimModel():
         self.move_cursor(0, 0)
 
     def is_level_beaten(self):
-        return (self.level == 0 or self.level == 1 or self.level == 2 or self.level == 3)
+        #return (self.level == 0 or self.level == 1 or self.level == 2 or self.level == 3)
         return self.player_text == self.goal_text
     
     """def get_last_correct_char(self):
