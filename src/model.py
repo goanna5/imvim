@@ -10,7 +10,6 @@ class ImvimModel():
         self.max_line_width = 60
         self.numbers_entered = 0 #track how many binary digits have been entered
 
-    
     def get_cursor_coords(self):
         # (col_num, row_num)
         # i.e. (x, y) with (0,0) being the top left corner
