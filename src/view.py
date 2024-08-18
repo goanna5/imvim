@@ -124,6 +124,19 @@ class TextGrid(tk.Canvas):
         #Redraw line from first line up to number of lines
         for i in range(1, num_lines):
             self.redraw_line(i, text)
+
+    def draw_success_box(self) -> None:
+        box_width = 500
+        box_height = 300
+        x1 = (self.width - box_width) // 2
+        x2 = (self.width + box_width) // 2
+        y1 = (self.height - box_height) // 2
+        y2 = (self.height + box_height) // 2
+        self.create_rectangle(x1, y1, x2, y2, fill="white", width=5)
+        mid_x = self.width // 2
+        mid_y = self.height // 2
+        self.create_text((mid_x, mid_y-50), text="CONGRATULATIONS!", anchor=CENTER, fill="black", font=("Consolas", 20))
+        self.create_text((mid_x, mid_y+50), text="Press any key to continue.", anchor=CENTER, fill="black", font=("Consolas", 20))
         
 
 
@@ -240,3 +253,6 @@ class ImvimView:
         self.taskFrame.draw(task_text, level)
         self.userTextFrame.draw(user_text, level, model.get_cursor_coords())
         self.keyPressFrame.init_redraw()
+
+    def draw_success_message(self):
+        self.userTextFrame.draw_success_box()
