@@ -43,13 +43,14 @@ class ImvimModel():
                 #if cursor now on row that doesn't exist, add new row
                 if row > len(self.player_text):
                     self.player_text.append("")
-                
-
+            
+            #this is to make the overflow go to the next row, but it would need a for loop
+            # if len(self.player_text[row] + char) > self.max_line_width:
+            #     if row >= len(self.player_text):
+            #         self.player_text.append("")
+            #     self.player_text[row + 1] = [self.max_line_width - 1:] + self.player_text[row + 1]
             self.player_text[row] = self.player_text[row][:col] + char + self.player_text[row][col:self.max_line_width - 1]
-            #self.player_text[row].append(char)
-            col += 1
             self.move_cursor(0, len(char))
-        #self.move_cursor(len(char), 0)
             
     def enter_at_cursor(self) -> None:
         current_line = self.get_current_line()
@@ -151,7 +152,7 @@ class ImvimModel():
         for i in range(4):
             print("cords", col, row)
             #this is in case the space is across two lines
-            if len(self.player_text[row]) < 1 or col < 0:
+            if len(self.player_text[row]) < 1 or col < 1:
                 self.cursor_coords = (self.end_of_previous_row(self.cursor_coords[1]),self.cursor_coords[1] - 1)
                 col, row = self.cursor_coords
             print("row?",(self.player_text[row][(col):self.max_line_width - 1]))
