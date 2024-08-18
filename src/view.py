@@ -159,15 +159,18 @@ class KeyPressFrame(tk.Canvas):
         self.clear()
         square_height = 75
         for i in range(self.capacity):
-            if i >= len(keys) or keys[-1-i] == " ":
+            if i > 0 and (i >= len(keys) or keys[-i] == " "):
                 return
-            this_key = keys[-1-i]
+            this_key = keys[-i]
             cell_width = self.width // self.capacity
             center_x = i*cell_width + cell_width//2
             center_y = self.height // 2
 
             y1 = center_y - square_height//2
             y2 = y1 + square_height
+            if i == 0:
+                self.create_text((center_x+10, center_y), text="Key History:", anchor=CENTER, font="Arial", fill="white")
+                continue
             if len(this_key) == 1:
                 # single char -> square box
                 x1 = center_x - square_height//2
