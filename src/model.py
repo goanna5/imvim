@@ -11,6 +11,7 @@ class ImvimModel():
         self.numbers_entered = 0 #track how many binary digits have been entered
         self.need_to_redraw = False
         self.last_correct_char = (0,0)
+        self.pop_up = False
         #self.capsLock = False
 
     # def get_caps(self):
@@ -40,6 +41,12 @@ class ImvimModel():
         # each level adds a new layer of complexity
         return self.level
 
+    def get_pop_up(self):
+        return self.pop_up
+    
+    def set_pop_up(self, to_set):
+        self.pop_up = to_set
+        
     def update_row(self, row_num: int, new_text: str):
         # (0 indexed) 0 is top row
         if row_num < len(self.player_text):
