@@ -1,15 +1,15 @@
 # imvim 🔥
 *The New and Improved Vi Improved™*
 
-Ever felt annoyed by Vim commands and want something that *definitely* makes more sense? Well then, imvim is for you!!
+Ever felt annoyed by Vim commands and want something that *definitely* makes more sense? Well then, imvim is totally n̶o̶t̶ for you!!
 
-Including:
+**Including:**
 - a brand new text-editor in Tkinter
 - *much* more intuitive keybinds...
 - AND a level system to introduce these keybinds... gradually 😊
 
 # The keybinds 🎉
-![keybinds](https://imgur.com/eKVBprb)
+![keybinds](https://i.imgur.com/pgUe1EA.jpg)
 *(ignore how it's a pic straight from hackathon showcase)*
 
 **Notable features:**
