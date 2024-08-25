@@ -9,7 +9,7 @@ Including:
 - AND a level system to introduce these keybinds... gradually 😊
 
 # The keybinds 🎉
-![keybinds](https://imgur.com/a/eKVBprb)
+![keybinds](https://imgur.com/eKVBprb.png)
 *(ignore how it's a pic straight from hackathon showcase)*
 
 **Notable features:**
