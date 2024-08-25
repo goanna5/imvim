@@ -9,8 +9,8 @@ Including:
 - AND a level system to introduce these keybinds... gradually 😊
 
 # The keybinds 🎉
-![keybinds](https://imgur.com/a/eKVBprb.png)
-*(ignore how is a pic straight from hackathon showcase)*
+![keybinds](https://imgur.com/a/eKVBprb)
+*(ignore how it's a pic straight from hackathon showcase)*
 
 **Notable features:**
 - u, d, l, r and up, down, left, right arrows swapped
