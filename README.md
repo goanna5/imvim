@@ -1,15 +1,23 @@
-# IMVIM 🔥
-*The New and Improved Vim™*
+# imvim 🔥
+*The New and Improved Vi Improved™*
 
-Ever felt that Vim commands are too counterintuitive? Why is "j" move down and "k" move up and "l" move right?? Why can't I have a keyboard based text-editor that **makes sense??**
+Ever felt annoyed by Vim commands and want something that *definitely* makes more sense? Well then, imvim is for you!!
 
-To fix this massive oversight we created:
-- a new text-editor with *much* more intuitive commands...
-- a bit of a puzzle to figure out how stuff works (cause life gets boring sometimes y'know)
-- AND a level system so when it gets easy, dw, there's more!!
+Including:
+- a brand new text-editor in Tkinter
+- *much* more intuitive keybinds...
+- AND a level system to introduce these keybinds... gradually 😊
 
-# The twist 🎉
-We're not telling you what any of these keybinds are 😊. Go figure it out - have fun!! Its intuitive, trust 🤗
+# The keybinds 🎉
+![keybinds](https://imgur.com/a/eKVBprb.png)
+*(ignore how is a pic straight from hackathon showcase)*
+
+**Notable features:**
+- u, d, l, r and up, down, left, right arrows swapped
+- Colemak lowercase
+- alphabetical uppercase
+- 4-bit binary for each digit (enter LSB first)
+- centralised brackets
 
 # Tech stack 💪
 Python, Tkinter, thats pretty much it
