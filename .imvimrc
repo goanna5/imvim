@@ -1,0 +1,133 @@
+" .imvimrc - a .vimrc for Improved Vi Improved
+"
+
+set timeoutlen=10000
+
+" Important stuff
+inoremap d <C-o>3j
+inoremap u <C-o>2k
+inoremap l <C-o>5h
+inoremap r <C-o>7l
+
+inoremap <Left> l
+inoremap <Right> r
+inoremap <Up> u
+inoremap <Down> d
+
+inoremap <BS> <C-o>cc
+
+" Number row
+inoremap ` <CR>
+inoremap 1 +
+inoremap 2 -
+inoremap 3 *
+inoremap 4 /
+inoremap 5 =
+inoremap 6 %
+inoremap 7 **
+inoremap 8 <
+inoremap 9 >
+inoremap 0 &
+inoremap - \|
+inoremap = ~
+
+inoremap ~ `
+inoremap ! j
+inoremap @ J
+inoremap % h
+inoremap ^ H
+inoremap & f
+inoremap * F
+inoremap ( g
+inoremap ) G
+inoremap _ ^
+inoremap + !
+
+inoremap #### 0
+inoremap $### 1
+inoremap #$## 2
+inoremap $$## 3
+inoremap ##$# 4
+inoremap $#$# 5
+inoremap #$$# 6
+inoremap $$$# 7
+inoremap ###$ 8
+inoremap $##$ 9
+inoremap #$#$ 0
+inoremap $$#$ 1
+inoremap ##$$ 2
+inoremap $#$$ 3
+inoremap #$$$ 4
+inoremap $$$$ 5
+
+inoremap # 0
+inoremap $ 1
+
+" Top row (uppercase)
+inoremap Q A
+inoremap W B
+inoremap E C
+inoremap R E
+" TODO: T
+" TODO: Y
+inoremap U <C-o>dd
+inoremap I I
+inoremap O <Esc>:q!<CR>
+inoremap P K
+inoremap { ,
+inoremap } #
+inoremap \| @
+
+" Home row (uppercase)
+inoremap A M
+inoremap S N
+inoremap D O
+inoremap F {
+inoremap G '
+inoremap H ;
+inoremap J }
+inoremap K P
+inoremap L Q
+inoremap : ]
+inoremap " \
+
+" Bottom row (uppercase)
+inoremap Z S
+inoremap X T
+inoremap C V
+inoremap V W
+inoremap B X
+inoremap N Y
+inoremap M Z
+inoremap < L
+inoremap > \\n
+inoremap ? <tab>
+
+" Top row (lowercase)
+inoremap e t
+inoremap t p
+inoremap y n
+inoremap o y
+inoremap p o
+inoremap [ :
+inoremap ] _
+inoremap \ $
+
+" Home row (lowercase)
+inoremap f (
+inoremap g "
+inoremap h .
+inoremap j )
+inoremap k e
+inoremap ; [
+inoremap ' ?
+
+" Bottom row (lowercase)
+inoremap n k
+inoremap < ==
+inoremap > &&
+inoremap ? \|\|
+
+inoremap stack <Space>
+inoremap <Space> space
+
