@@ -22,6 +22,11 @@ Ever felt annoyed by Vim commands and want something that *definitely* makes mor
 # Tech stack 💪
 Python, Tkinter, thats pretty much it
 
+# Want to use imvim as your terminal text editor?
+Now you can, thanks to the awesome [@alegs-a](https://github.com/alegs-a) who created a `.imvimrc` for us that turns stock vim into feature-complete imvim 🔥
+
+To use, simply download the `.imvimrc` file from the source files and add `alias imvim="vim -S $HOME/.imvimrc"` to your `.bashrc` or similar. Now you can run `imvim file.txt` just like you're used to!
+
 # Group project for UQCS 2024 hackathon made by:
 - [@ryandpmwong](https://github.com/ryandpmwong)
 - [@goanna5](https://github.com/goanna5)
@@ -29,3 +34,4 @@ Python, Tkinter, thats pretty much it
 - [@CharlotteSargent](https://github.com/CharlotteSargent)
 - & a bit of help from [@aina2104](https://github.com/aina2104) and [@Joanna-Wang105](https://github.com/Joanna-Wang105)
 - idea creds to "The Guys of You Cue Com Psi"
+- & thank you to [@alegs-a](https://github.com/alegs-a) for writing the .imvimrc :)
