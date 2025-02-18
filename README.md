@@ -25,7 +25,7 @@ Python, Tkinter, thats pretty much it
 # Want to use imvim as your terminal text editor?
 Now you can, thanks to the awesome [@alegs-a](https://github.com/alegs-a) who created a `.imvimrc` for us that turns stock vim into feature-complete imvim 🔥
 
-To use, simply download the `.imvimrc` file from the source files and add `alias imvim="vim -S $HOME/.imvimrc"` to your `.bashrc` or similar. Now you can run `imvim file.txt` just like you're used to!
+To use, simply download the `.imvimrc` file from the source files (and add to home directory!!), then add `alias imvim="vim -S $HOME/.imvimrc"` to your `.bashrc` or similar. Now you can run `imvim file.txt` just like you're used to!
 
 # Group project for UQCS 2024 hackathon made by:
 - [@ryandpmwong](https://github.com/ryandpmwong)
